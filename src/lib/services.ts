@@ -14,13 +14,13 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
   const paymentService = allServices.find((s) => s.isWantToPay);
 
   let services = allServices.filter(
-    (s) => s.id !== paymentService?.id
+    (service) => !service.isWantToPay
   );
 
   // Apply category filter
   if (category !== 'all') {
     services = services.filter((service) => 
-      service.category === category || service.secondaryCategory === category
+      service.category === category || (service.secondaryCategory && service.secondaryCategory === category)
     );
   }
 
@@ -69,7 +69,7 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
 
   const allCategories = [
     'all',
-    ...Array.from(new Set(allServices.flatMap((s) => [s.category, s.secondaryCategory]).filter(Boolean) as string[])),
+    ...Array.from(new Set(allServices.flatMap((s) => [s.category, s.secondaryCategory]).filter((c): c is string => !!c))),
   ].filter((c) => c !== 'Специальное');
 
   return {
@@ -79,3 +79,5 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
     allCategories,
   };
 }
+
+    
