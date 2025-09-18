@@ -2,6 +2,26 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import Script from 'next/script';
+import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
+import { cn } from '@/lib/utils';
+
+const fontInter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const fontSpaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  display: 'swap',
+});
+
+const fontJetBrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Бесплатные ИИ',
@@ -14,18 +34,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className="dark">
+    <html
+      lang="ru"
+      className={cn(
+        'dark',
+        fontInter.variable,
+        fontSpaceGrotesk.variable,
+        fontJetBrainsMono.variable
+      )}
+    >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono&display=swap"
-          rel="stylesheet"
-        />
         <Script
           src="https://telegram.org/js/telegram-web-app.js"
           strategy="afterInteractive"

@@ -4,13 +4,13 @@ import { CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { handleCardClick } from '@/app/actions/telegram-actions';
 import type { AIService } from '@/data/ai-services';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 type PaymentServiceCardProps = {
   service: AIService;
 };
 
-export function PaymentServiceCard({ service }: PaymentServiceCardProps) {
+export default function PaymentServiceCard({ service }: PaymentServiceCardProps) {
   const onCardClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     handleCardClick({

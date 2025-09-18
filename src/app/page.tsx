@@ -1,14 +1,22 @@
-import AIServiceCard from '@/components/ai-service-card';
+import React, { Suspense } from 'react';
 import Controls from '@/components/controls';
-import { allServices, AIService } from '@/data/ai-services';
-import { Package, CreditCard } from 'lucide-react';
-import Link from 'next/link';
-import { PaymentServiceCard } from '@/components/payment-service-card';
+import { allServices } from '@/data/ai-services';
+import { Package } from 'lucide-react';
 import { SearchInput } from '@/components/search-input';
+import { PaginationComponent } from '@/components/pagination';
+
+const AIServiceCard = React.lazy(
+  () => import('@/components/ai-service-card')
+);
+const PaymentServiceCard = React.lazy(
+  () => import('@/components/payment-service-card')
+);
 
 type PageProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
+
+const ITEMS_PER_PAGE = 24;
 
 export default function Home({ searchParams }: PageProps) {
   const category =
@@ -17,6 +25,8 @@ export default function Home({ searchParams }: PageProps) {
     typeof searchParams.sort === 'string' ? searchParams.sort : 'newest';
   const search =
     typeof searchParams.search === 'string' ? searchParams.search : '';
+  const page =
+    typeof searchParams.page === 'string' ? Number(searchParams.page) : 1;
 
   const paymentService = allServices.find((s) => s.isWantToPay);
   const syntxService = allServices.find((s) => s.id === 'syntx-ai-bot');
@@ -46,10 +56,17 @@ export default function Home({ searchParams }: PageProps) {
       );
       break;
   }
-  
-  if (syntxService) {
+
+  if (syntxService && page === 1 && category === 'all' && !search) {
     services.unshift(syntxService);
   }
+  
+  const totalServices = services.length;
+  const totalPages = Math.ceil(totalServices / ITEMS_PER_PAGE);
+  const paginatedServices = services.slice(
+    (page - 1) * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE
+  );
 
   const allCategories = [
     'all',
@@ -67,9 +84,11 @@ export default function Home({ searchParams }: PageProps) {
         </p>
       </header>
 
-      {paymentService && (
+      {paymentService && page === 1 && (
         <div className="mb-8">
-          <PaymentServiceCard service={paymentService} />
+           <Suspense fallback={<div className="h-24 bg-card/50 rounded-2xl animate-pulse" />}>
+            <PaymentServiceCard service={paymentService} />
+          </Suspense>
         </div>
       )}
 
@@ -80,15 +99,23 @@ export default function Home({ searchParams }: PageProps) {
         <Controls categories={allCategories} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => (
-            <AIServiceCard key={service.id} service={service} />
+          {paginatedServices.map((service) => (
+             <Suspense key={service.id} fallback={<div className="h-48 bg-card/50 rounded-2xl animate-pulse" />}>
+               <AIServiceCard service={service} />
+             </Suspense>
           ))}
         </div>
-        {services.length === 0 && (
+        {paginatedServices.length === 0 && (
           <div className="col-span-full flex flex-col items-center justify-center py-16 text-center text-muted-foreground">
             <Package size={64} className="mb-4" />
             <h3 className="text-xl font-semibold">Ничего не найдено</h3>
             <p>Попробуйте изменить фильтры или поисковый запрос.</p>
+          </div>
+        )}
+        
+        {totalPages > 1 && (
+          <div className="mt-8">
+            <PaginationComponent currentPage={page} totalPages={totalPages} />
           </div>
         )}
       </main>
