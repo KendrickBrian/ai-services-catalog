@@ -26,23 +26,25 @@ type ControlsProps = {
   categories: string[];
 };
 
+const iconClass = "w-5 h-5";
+
 const categoryIcons: { [key: string]: React.ReactNode } = {
-  all: <LayoutGrid />,
-  Текст: <FileText />,
-  Изображения: <ImageIcon />,
-  Код: <Code />,
-  Видео: <Video />,
-  Аудио: <Music />,
-  Маркетинг: <TrendingUp />,
-  Специальное: <CreditCard />,
-  Дизайн: <Sparkles />,
-  Разное: <Package />,
-  Автоматизация: <Bot />,
-  Продуктивность: <Zap />,
-  'Бизнес и финансы': <Briefcase />,
-  Образование: <GraduationCap />,
-  Здоровье: <HeartPulse />,
-  '3D и моделирование': <Cuboid />,
+  all: <LayoutGrid className={iconClass} />,
+  Текст: <FileText className={iconClass} />,
+  Изображения: <ImageIcon className={iconClass} />,
+  Код: <Code className={iconClass} />,
+  Видео: <Video className={iconClass} />,
+  Аудио: <Music className={iconClass} />,
+  Маркетинг: <TrendingUp className={iconClass} />,
+  Специальное: <CreditCard className={iconClass} />,
+  Дизайн: <Sparkles className={iconClass} />,
+  Разное: <Package className={iconClass} />,
+  Автоматизация: <Bot className={iconClass} />,
+  Продуктивность: <Zap className={iconClass} />,
+  'Бизнес и финансы': <Briefcase className={iconClass} />,
+  Образование: <GraduationCap className={iconClass} />,
+  Здоровье: <HeartPulse className={iconClass} />,
+  '3D и моделирование': <Cuboid className={iconClass} />,
 };
 
 export default function Controls({ categories }: ControlsProps) {
@@ -87,6 +89,7 @@ export default function Controls({ categories }: ControlsProps) {
     'Образование',
     'Здоровье',
     'Разное',
+    'Специальное',
   ];
 
   const sortedCategories = [...categories].sort((a, b) => {
@@ -108,7 +111,7 @@ export default function Controls({ categories }: ControlsProps) {
             className={cn(
               'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors shrink-0',
               currentCategory === cat
-                ? 'bg-primary/20 text-white'
+                ? 'bg-primary/20 text-primary-foreground'
                 : 'bg-card/50 text-muted-foreground hover:bg-card/90 hover:text-white'
             )}
           >
