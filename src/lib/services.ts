@@ -52,13 +52,13 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
   // Handle pinning of SYNTX service
   const syntxService = allServices.find((s) => s.id === 'syntx-ai-bot');
   if (syntxService && page === 1 && !search) {
-    // Remove from current position and add to the top
-    const index = services.findIndex(s => s.id === syntxService.id);
-    if (index > -1) {
-      services.splice(index, 1);
-    }
-    // Only unshift if it was in the filtered list or if we're on 'all'
-    if (index > -1 || category === 'all') {
+    const syntxInFilteredList = services.find(s => s.id === syntxService.id);
+    if (syntxInFilteredList) {
+        // Remove from current position and add to the top
+        const index = services.findIndex(s => s.id === syntxService.id);
+        if (index > -1) {
+            services.splice(index, 1);
+        }
         services.unshift(syntxService);
     }
   }
@@ -72,7 +72,7 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
 
   const allCategories = [
     'all',
-    ...Array.from(new Set(allServices.map((s) => s.category))),
+    ...Array.from(new Set(allServices.flatMap((s) => [s.category, s.secondaryCategory]).filter(Boolean) as string[])),
   ].filter((c) => c !== 'Специальное');
 
   return {
