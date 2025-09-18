@@ -4,6 +4,7 @@ import { allServices } from '@/data/ai-services';
 import { Package } from 'lucide-react';
 import { SearchInput } from '@/components/search-input';
 import { PaginationComponent } from '@/components/pagination';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const AIServiceCard = React.lazy(
   () => import('@/components/ai-service-card')
@@ -86,7 +87,7 @@ export default function Home({ searchParams }: PageProps) {
 
       {paymentService && page === 1 && (
         <div className="mb-8">
-           <Suspense fallback={<div className="h-24 bg-card/50 rounded-2xl animate-pulse" />}>
+           <Suspense fallback={<Skeleton className="h-24 w-full rounded-2xl" />}>
             <PaymentServiceCard service={paymentService} />
           </Suspense>
         </div>
@@ -98,13 +99,20 @@ export default function Home({ searchParams }: PageProps) {
         </div>
         <Controls categories={allCategories} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {paginatedServices.map((service) => (
-             <Suspense key={service.id} fallback={<div className="h-48 bg-card/50 rounded-2xl animate-pulse" />}>
-               <AIServiceCard service={service} />
-             </Suspense>
-          ))}
-        </div>
+        <Suspense fallback={
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <Skeleton key={i} className="h-48 w-full rounded-2xl" />
+            ))}
+          </div>
+        }>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {paginatedServices.map((service) => (
+              <AIServiceCard key={service.id} service={service} />
+            ))}
+          </div>
+        </Suspense>
+
         {paginatedServices.length === 0 && (
           <div className="col-span-full flex flex-col items-center justify-center py-16 text-center text-muted-foreground">
             <Package size={64} className="mb-4" />

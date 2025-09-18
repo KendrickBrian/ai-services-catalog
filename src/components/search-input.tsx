@@ -20,6 +20,7 @@ export function SearchInput() {
       } else {
         params.delete(name);
       }
+      params.set('page', '1'); // Reset page to 1 on search
       return params.toString();
     },
     [searchParams]

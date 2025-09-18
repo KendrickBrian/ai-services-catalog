@@ -30,11 +30,11 @@ const iconClass = "w-5 h-5";
 
 const categoryIcons: { [key: string]: React.ReactNode } = {
   all: <LayoutGrid className={iconClass} />,
-  Текст: <FileText className={iconClass} />,
-  Изображения: <ImageIcon className={iconClass} />,
-  Код: <Code className={iconClass} />,
-  Видео: <Video className={iconClass} />,
-  Аудио: <Music className={iconClass} />,
+  Текст: '📝',
+  Изображения: '🖼️',
+  Код: '💻',
+  Видео: '🎬',
+  Аудио: '🎵',
   Маркетинг: <TrendingUp className={iconClass} />,
   Специальное: <CreditCard className={iconClass} />,
   Дизайн: <Sparkles className={iconClass} />,
@@ -60,6 +60,7 @@ export default function Controls({ categories }: ControlsProps) {
       } else {
         params.set(name, value);
       }
+      params.set('page', '1'); // Reset to first page on category change
       return params.toString();
     },
     [searchParams]
@@ -115,7 +116,7 @@ export default function Controls({ categories }: ControlsProps) {
                 : 'bg-card/50 text-muted-foreground hover:bg-card/90 hover:text-white'
             )}
           >
-            {categoryIcons[cat] || categoryIcons['all']}
+            <span className="text-lg">{categoryIcons[cat] || categoryIcons['all']}</span>
             <span className="capitalize">{cat === 'all' ? 'Все категории' : cat}</span>
           </button>
         ))}
