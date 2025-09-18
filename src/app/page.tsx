@@ -19,8 +19,11 @@ export default function Home({ searchParams }: PageProps) {
     typeof searchParams.search === 'string' ? searchParams.search : '';
 
   const paymentService = allServices.find((s) => s.isWantToPay);
+  const syntxService = allServices.find((s) => s.id === 'syntx-ai-bot');
 
-  let services = allServices.filter((s) => s.id !== paymentService?.id);
+  let services = allServices.filter(
+    (s) => s.id !== paymentService?.id && s.id !== syntxService?.id
+  );
 
   if (category !== 'all') {
     services = services.filter((service) => service.category === category);
@@ -42,6 +45,10 @@ export default function Home({ searchParams }: PageProps) {
           new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime()
       );
       break;
+  }
+  
+  if (syntxService) {
+    services.unshift(syntxService);
   }
 
   const allCategories = [
