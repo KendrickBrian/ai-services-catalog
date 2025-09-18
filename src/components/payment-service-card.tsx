@@ -4,30 +4,29 @@ import { CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { handleCardClick } from '@/app/actions/telegram-actions';
 import type { AIService } from '@/data/ai-services';
+import { cn } from '@/lib/utils';
 
 type PaymentServiceCardProps = {
   service: AIService;
 };
 
 export function PaymentServiceCard({ service }: PaymentServiceCardProps) {
-  const onPaymentServiceClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const onPaymentServiceClick = () => {
     handleCardClick({
       serviceName: service.name,
       serviceLink: service.link,
     });
-    
+
     if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.platform !== 'unknown') {
-      e.preventDefault();
-      window.Telegram.WebApp.openLink(service.link);
+        window.Telegram.WebApp.openLink(service.link);
+    } else {
+        window.open(service.link, '_blank', 'noopener,noreferrer');
     }
   };
 
   return (
-    <a
-      href={service.link}
+    <div
       onClick={onPaymentServiceClick}
-      target="_blank"
-      rel="noopener noreferrer"
       className="bg-card/50 backdrop-blur-lg border border-green-500/50 rounded-2xl p-4 flex items-center justify-between cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-green-500/20 no-underline text-current"
     >
       <div className="flex items-center gap-4">
@@ -41,11 +40,9 @@ export function PaymentServiceCard({ service }: PaymentServiceCardProps) {
       </div>
       <Button
         className="bg-green-500 hover:bg-green-600 text-white font-bold shrink-0"
-        asChild={false}
-        onClick={(e) => e.preventDefault()}
       >
         Получить
       </Button>
-    </a>
+    </div>
   );
 }
