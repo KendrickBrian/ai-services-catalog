@@ -1,13 +1,7 @@
 'use server';
 
-import { z } from 'zod';
-
-const ClickDataSchema = z.object({
-  serviceName: z.string(),
-  serviceLink: z.string(),
-});
-
-type ClickData = z.infer<typeof ClickDataSchema>;
+import type { ClickData } from './telegram-schemas';
+import { ClickDataSchema } from './telegram-schemas';
 
 export async function handleCardClick(data: ClickData) {
   const validatedData = ClickDataSchema.safeParse(data);
