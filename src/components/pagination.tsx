@@ -1,7 +1,7 @@
 
 'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   Pagination,
   PaginationContent,
@@ -22,24 +22,16 @@ type PaginationComponentProps = {
 export function PaginationComponent({ currentPage, totalPages }: PaginationComponentProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
-      return params.toString();
-    },
-    [searchParams]
-  );
-
-  const handlePageChange = (page: number) => {
+  const handlePageChange = useCallback((page: number) => {
     if (page >= 1 && page <= totalPages) {
-      router.push(pathname + '?' + createQueryString('page', String(page)), {
+      const params = new URLSearchParams(window.location.search);
+      params.set('page', String(page));
+      router.push(pathname + '?' + params.toString(), {
         scroll: true,
       });
     }
-  };
+  }, [totalPages, pathname, router]);
 
   const getPaginationItems = () => {
     const items = [];
@@ -78,9 +70,10 @@ export function PaginationComponent({ currentPage, totalPages }: PaginationCompo
       pageNumbers.push(totalPages);
     }
     
+    let ellipsisCount = 0;
     for (const pageNum of pageNumbers) {
       if (pageNum === -1) {
-        items.push(<PaginationItem key={`ellipsis-${items.length}`}><PaginationEllipsis /></PaginationItem>);
+        items.push(<PaginationItem key={`ellipsis-${ellipsisCount++}`}><PaginationEllipsis /></PaginationItem>);
       } else {
         items.push(
           <PaginationItem key={pageNum}>

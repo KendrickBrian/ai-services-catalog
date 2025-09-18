@@ -1,25 +1,23 @@
 
 'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import { cn } from '@/lib/utils';
 import {
-  LayoutGrid,
-  TrendingUp,
   CreditCard,
   Package,
 } from 'lucide-react';
 
 type ControlsProps = {
   categories: string[];
+  currentCategory: string;
 };
 
 const iconClass = "w-5 h-5";
 
-// Replacing most lucide icons with lightweight emojis to improve performance
 const categoryIcons: { [key: string]: React.ReactNode } = {
-  all: <LayoutGrid className={iconClass} />,
+  all: '🗂️',
   Текст: '📝',
   Изображения: '🖼️',
   Код: '💻',
@@ -37,32 +35,22 @@ const categoryIcons: { [key: string]: React.ReactNode } = {
   '3D и моделирование': '🧊',
 };
 
-export default function Controls({ categories }: ControlsProps) {
+export default function Controls({ categories, currentCategory }: ControlsProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      if (value === 'all' && name === 'category') {
-        params.delete(name);
-      } else {
-        params.set(name, value);
-      }
-      params.set('page', '1'); // Reset to first page on category change
-      return params.toString();
-    },
-    [searchParams]
-  );
 
   const handleCategoryChange = (value: string) => {
-    router.push(pathname + '?' + createQueryString('category', value), {
+    const params = new URLSearchParams(window.location.search);
+    if (value === 'all') {
+      params.delete('category');
+    } else {
+      params.set('category', value);
+    }
+    params.set('page', '1');
+    router.push(pathname + '?' + params.toString(), {
       scroll: false,
     });
   };
-
-  const currentCategory = searchParams.get('category') || 'all';
 
   const categoryOrder = [
     'all',

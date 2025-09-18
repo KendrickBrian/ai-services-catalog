@@ -1,42 +1,50 @@
 
 'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
 
-export function SearchInput() {
+type SearchInputProps = {
+  searchValue: string;
+};
+
+export function SearchInput({ searchValue: initialSearchValue }: SearchInputProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [searchValue, setSearchValue] = useState(searchParams.get('search') || '');
+  const [searchValue, setSearchValue] = useState(initialSearchValue);
 
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      if (value) {
-        params.set(name, value);
-      } else {
-        params.delete(name);
-      }
-      params.set('page', '1'); // Reset page to 1 on search
-      return params.toString();
-    },
-    [searchParams]
-  );
+  // Update state if the initial prop changes (e.g., from browser back/forward)
+  useEffect(() => {
+    setSearchValue(initialSearchValue);
+  }, [initialSearchValue]);
+
+  const handleSearch = useCallback((value: string) => {
+    const params = new URLSearchParams(window.location.search);
+    if (value) {
+      params.set('search', value);
+    } else {
+      params.delete('search');
+    }
+    params.set('page', '1');
+    router.push(pathname + '?' + params.toString(), {
+      scroll: false,
+    });
+  }, [pathname, router]);
   
   useEffect(() => {
     const handler = setTimeout(() => {
-      router.push(pathname + '?' + createQueryString('search', searchValue), {
-        scroll: false,
-      });
+      // Only trigger search if value has actually changed
+      if (searchValue !== initialSearchValue) {
+        handleSearch(searchValue);
+      }
     }, 300);
 
     return () => {
       clearTimeout(handler);
     };
-  }, [searchValue, router, pathname, createQueryString]);
+  }, [searchValue, initialSearchValue, handleSearch]);
 
   return (
     <div className="relative">

@@ -21,10 +21,13 @@ type PageProps = {
 const ITEMS_PER_PAGE = 24;
 
 export default function Home({ searchParams }: PageProps) {
-  const category = searchParams.category ?? 'all';
-  const sort = searchParams.sort ?? 'newest';
-  const search = searchParams.search ?? '';
-  const page = Number(searchParams.page ?? 1);
+  const category =
+    typeof searchParams.category === 'string' ? searchParams.category : 'all';
+  const sort = typeof searchParams.sort === 'string' ? searchParams.sort : 'newest';
+  const search =
+    typeof searchParams.search === 'string' ? searchParams.search : '';
+  const page =
+    typeof searchParams.page === 'string' ? Number(searchParams.page) : 1;
 
   const paymentService = allServices.find((s) => s.isWantToPay);
   const syntxService = allServices.find((s) => s.id === 'syntx-ai-bot');
@@ -92,9 +95,9 @@ export default function Home({ searchParams }: PageProps) {
 
       <main>
         <div className="mb-8">
-          <SearchInput />
+          <SearchInput searchValue={search} />
         </div>
-        <Controls categories={allCategories} />
+        <Controls categories={allCategories} currentCategory={category} />
 
         <Suspense fallback={
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
