@@ -16,11 +16,13 @@ export function PaymentServiceCard({ service }: PaymentServiceCardProps) {
       serviceName: service.name,
       serviceLink: service.link,
     });
-
-    if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.platform !== 'unknown') {
-        window.Telegram.WebApp.openLink(service.link);
-    } else {
-        window.open(service.link, '_blank', 'noopener,noreferrer');
+    
+    if (typeof window !== 'undefined') {
+      if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.platform !== 'unknown') {
+          window.Telegram.WebApp.openLink(service.link);
+      } else {
+          window.open(service.link, '_blank', 'noopener,noreferrer');
+      }
     }
   };
 
