@@ -1,4 +1,3 @@
-
 export type AIService = {
   id: string;
   name: string;
@@ -9,16 +8,16 @@ export type AIService = {
     | 'Видео'
     | 'Аудио'
     | 'Маркетинг'
-    | 'Специальное'
     | 'Дизайн'
-    | 'Разное'
-    | 'Автоматизация'
     | 'Продуктивность'
+    | 'Автоматизация'
     | 'Бизнес и финансы'
     | 'Образование'
     | 'Здоровье'
-    | '3D и моделирование';
-  secondaryCategory?: 'Код' | 'Изображения' | 'Разное' | 'Текст' | 'Видео' | 'Аудио' | 'Дизайн' | 'Маркетинг';
+    | '3D и моделирование'
+    | 'Разное'
+    | 'Специальное';
+  secondaryCategory?: 'Текст' | 'Изображения' | 'Код' | 'Видео' | 'Аудио' | 'Маркетинг' | 'Дизайн' | '3D и моделирование' | 'Разное';
   description: string;
   link: string;
   dateAdded: string; // YYYY-MM-DD
@@ -380,8 +379,8 @@ export const allServices: AIService[] = [
   {
     id: 'phind',
     name: 'Phind',
-    category: 'Разное',
-    secondaryCategory: 'Код',
+    category: 'Код',
+    secondaryCategory: 'Разное',
     description: 'Поисковик специально для кодеров. Задаешь вопрос по коду — получаешь ответ с примерами и объяснениями. Бесплатная версия — огонь.',
     link: 'https://www.phind.com/',
     dateAdded: '2023-12-10',
@@ -494,7 +493,7 @@ export const allServices: AIService[] = [
   {
     id: 'gamma',
     name: 'Gamma',
-    category: 'Дизайн',
+    category: 'Продуктивность',
     secondaryCategory: 'Текст',
     description: 'Забудь про скучные презентации. Просто накидываешь текст, а Gamma сама делает красивый и интерактивный дизайн. Есть бесплатный план.',
     link: 'https://gamma.app/',
@@ -506,7 +505,7 @@ export const allServices: AIService[] = [
   {
     id: 'tome',
     name: 'Tome',
-    category: 'Дизайн',
+    category: 'Продуктивность',
     secondaryCategory: 'Текст',
     description: 'Еще один крутой инструмент для создания презентаций. Умеет не только дизайнить, но и помогать со структурой повествования. Бесплатный план в наличии.',
     link: 'https://tome.app/',
@@ -736,6 +735,7 @@ export const allServices: AIService[] = [
     id: 'youcom',
     name: 'You.com',
     category: 'Разное',
+    secondaryCategory: 'Текст',
     description: 'AI-поисковик с кастомизацией. Можно выбрать, откуда брать информацию, и общаться с ним в разных режимах. Бесплатный.',
     link: 'https://you.com/',
     dateAdded: '2023-11-01',
@@ -857,7 +857,7 @@ export const allServices: AIService[] = [
     id: 'beautiful-ai',
     name: 'Beautiful.ai',
     category: 'Дизайн',
-    secondaryCategory: 'Текст',
+    secondaryCategory: 'Продуктивность',
     description: 'AI-конструктор, который сам делает твои слайды красивыми. Ты просто кидаешь контент, а он подбирает компоновку. Есть триал.',
     link: 'https://www.beautiful.ai/',
     dateAdded: '2023-12-01',
@@ -880,6 +880,7 @@ export const allServices: AIService[] = [
     id: 'metaphor',
     name: 'Metaphor',
     category: 'Разное',
+    secondaryCategory: 'Текст',
     description: 'Поисковик, который думает иначе. Вместо ключевых слов ты даешь ему пример того, что ищешь, и он находит похожее. Бесплатный.',
     link: 'https://metaphor.systems/',
     dateAdded: '2024-02-01',
@@ -1047,6 +1048,7 @@ export const allServices: AIService[] = [
     id: 'andisearch',
     name: 'Andi',
     category: 'Разное',
+    secondaryCategory: 'Текст',
     description: 'Разговорный AI-поисковик, который дает прямые ответы вместо синих ссылок. Бесплатный и без рекламы.',
     link: 'https://andisearch.com/',
     dateAdded: '2024-03-10',
@@ -1058,6 +1060,7 @@ export const allServices: AIService[] = [
     id: 'komo-ai',
     name: 'Komo AI',
     category: 'Разное',
+    secondaryCategory: 'Текст',
     description: 'Быстрый и приватный AI-поисковик для тех, кто устал от рекламы. Помогает глубоко исследовать темы. Бесплатный.',
     link: 'https://komo.ai/',
     dateAdded: '2024-04-15',
@@ -1346,6 +1349,7 @@ export const allServices: AIService[] = [
     id: 'perplexity-labs',
     name: 'Perplexity Labs',
     category: 'Разное',
+    secondaryCategory: 'Текст',
     description: 'Песочница от Perplexity AI, где можно бесплатно потестировать их самые новые и экспериментальные языковые модели.',
     link: 'https://labs.perplexity.ai/',
     dateAdded: '2024-05-05',
@@ -1368,6 +1372,7 @@ export const allServices: AIService[] = [
     id: 'youtube-summarizer-gemini',
     name: 'Расширение для YouTube (Gemini)',
     category: 'Продуктивность',
+    secondaryCategory: 'Текст',
     description: 'Смотреть часовое видео нет времени? Это расширение для браузера сделает тебе краткий пересказ любого ролика на YouTube. Топ!',
     link: 'https://chromewebstore.google.com/detail/hkcgcanacnkfiboffehihmpnlnakbkni?utm_source=item-share-cb',
     dateAdded: '2025-09-05',
@@ -1379,6 +1384,7 @@ export const allServices: AIService[] = [
     id: 'kimi-ai',
     name: 'Kimi.аi',
     category: 'Разное',
+    secondaryCategory: 'Текст',
     description: 'Представь, что у тебя есть личный аналитик. Этот AI-агент сам просканирует кучу сайтов и соберет для тебя всю инфу по теме. Мощный инструмент для исследований.',
     link: 'https://www.kimi.com/',
     dateAdded: '2025-09-05',
@@ -1412,6 +1418,7 @@ export const allServices: AIService[] = [
     id: 'whatitprints-com',
     name: 'whatitprints.com',
     category: 'Образование',
+    secondaryCategory: 'Код',
     description: 'Прокачай свои скиллы в чтении кода. Этот тренажер показывает тебе код, а ты угадываешь, что он выведет. Отлично для джунов.',
     link: 'https://www.whatitprints.com/',
     dateAdded: '2025-09-05',
@@ -1434,6 +1441,7 @@ export const allServices: AIService[] = [
     id: 'pixeltopath',
     name: 'PixelToPath',
     category: 'Дизайн',
+    secondaryCategory: 'Изображения',
     description: 'Нужно превратить обычную картинку в векторный SVG? Этот локальный конвертер сделает это в пару кликов. Удобно для дизайнеров.',
     link: 'https://sourceforge.net/projects/pixeltopath/files/latest/download',
     dateAdded: '2025-09-05',
@@ -1456,6 +1464,7 @@ export const allServices: AIService[] = [
     id: 'cartesian-cs-book',
     name: 'Интерактивный учебник по CS',
     category: 'Образование',
+    secondaryCategory: 'Код',
     description: 'Забудь про скучные книги по программированию. Этот интерактивный учебник с визуализацией алгоритмов и встроенным Python — просто пушка.',
     link: 'https://cartesian.app/',
     dateAdded: '2025-09-05',
@@ -1489,6 +1498,7 @@ export const allServices: AIService[] = [
     id: 'hi3dgen',
     name: 'Hi3DGen',
     category: '3D и моделирование',
+    secondaryCategory: 'Изображения',
     description: 'Сфоткал кроссовок, а нейронка сделала из него 3D-модель. Будущее уже здесь! Генерит детализированные модели из фото.',
     link: 'https://huggingface.co/spaces/Stable-X/Hi3DGen',
     dateAdded: '2025-09-05',
@@ -1511,6 +1521,7 @@ export const allServices: AIService[] = [
     id: 'the-curricula',
     name: 'The Curricula',
     category: 'Образование',
+    secondaryCategory: 'Текст',
     description: 'Хочешь выучить что-то новое, но не знаешь, с чего начать? Этот сервис сгенерит тебе пошаговый план обучения по любой теме.',
     link: 'https://www.thecurricula.com/',
     dateAdded: '2025-09-05',
@@ -1621,6 +1632,7 @@ export const allServices: AIService[] = [
     id: 'chat4data',
     name: 'Chat4Data',
     category: 'Разное',
+    secondaryCategory: 'Текст',
     description: 'Даешь ему ссылку на сайт, а он собирает с него все нужные данные. Удобно для анализа конкурентов или сбора информации.',
     link: 'https://chat4data.ai/',
     dateAdded: '2025-09-05',
@@ -1631,7 +1643,7 @@ export const allServices: AIService[] = [
   {
     id: 'bitchat',
     name: 'Bitchat',
-    category: 'Специальное',
+    category: 'Разное',
     description: 'Мессенджер для параноиков. Работает без интернета через Bluetooth и обеспечивает полную анонимность. Для особых случаев.',
     link: 'https://testflight.apple.com/join/QwkyFq6z',
     dateAdded: '2025-09-05',
@@ -1719,7 +1731,7 @@ export const allServices: AIService[] = [
   {
     id: 'akkio',
     name: 'Akkio',
-    category: 'Код',
+    category: 'Автоматизация',
     description: 'Предсказывает будущее на основе твоих данных, и для этого даже не нужно быть кодером. Загружаешь данные — получаешь прогнозы.',
     link: 'https://akkio.com',
     dateAdded: '2025-09-05',
@@ -1840,7 +1852,7 @@ export const allServices: AIService[] = [
   {
     id: 'airial',
     name: 'Airial',
-    category: 'Специальное',
+    category: 'Разное',
     description: 'Планировщик путешествий на AI. Задаешь параметры — получаешь готовый маршрут. Удобно и быстро.',
     link: 'https://airial.travel/',
     dateAdded: '2025-09-05',
@@ -2137,7 +2149,7 @@ export const allServices: AIService[] = [
   {
     id: 'ai-trip-planner',
     name: 'AI Trip Planner',
-    category: 'Специальное',
+    category: 'Разное',
     description: 'Персональный гид на AI. Составляет маршрут путешествия, бронирует отели и ищет интересные места.',
     link: 'https://www.buildai.space/app/dae3da25-888e-448f-b15c-5a20ca4ca961',
     dateAdded: '2025-09-05',
@@ -2225,7 +2237,7 @@ export const allServices: AIService[] = [
   {
     id: 'allure-security',
     name: 'Allure Security Technology',
-    category: 'Бизнес и финансы',
+    category: 'Автоматизация',
     description: 'Защищает бренды с помощью обнаружения мошенничества на базе ИИ и быстрого удаления.',
     link: 'https://alluresecurity.com',
     dateAdded: '2025-09-05',
@@ -2665,7 +2677,7 @@ export const allServices: AIService[] = [
   {
     id: 'abridge',
     name: 'Abridge',
-    category: 'Текст',
+    category: 'Продуктивность',
     description: 'Это просто спасение для врачей. Нейронка слушает разговор с пациентом и сама заполняет медицинскую карту. Больше времени на людей, меньше на бумаги.',
     link: 'https://www.abridge.com/',
     dateAdded: '2025-09-06',
@@ -2808,7 +2820,7 @@ export const allServices: AIService[] = [
   {
     id: 'bforeai',
     name: 'BforeAI',
-    category: 'Бизнес и финансы',
+    category: 'Автоматизация',
     description: 'Эта нейронка предсказывает кибератаки еще до того, как они произойдут. Работает на опережение.',
     link: 'https://www.bfore.ai',
     dateAdded: '2025-09-06',
@@ -3116,7 +3128,7 @@ export const allServices: AIService[] = [
   {
     id: 'automaited',
     name: 'Automaited',
-    category: 'Автоматизация',
+    category: 'Продуктивность',
     description: 'Хочешь написать электронную книгу? Этот сервис поможет тебе с контентом и дизайном, используя AI.',
     link: 'https://www.automaited.com/',
     dateAdded: '2025-09-06',
@@ -3446,7 +3458,7 @@ export const allServices: AIService[] = [
   {
     id: 'anon',
     name: 'Anon',
-    category: 'Автоматизация',
+    category: 'Разное',
     description: 'Позволяет использовать AI в разных программах, даже если у них нет официальной интеграции. Хитрая штука.',
     link: 'https://www.anon.com',
     dateAdded: '2025-09-06',
@@ -3644,7 +3656,7 @@ export const allServices: AIService[] = [
   {
     id: 'aniai',
     name: 'Aniai',
-    category: 'Специальное',
+    category: 'Разное',
     description: 'Робот-повар для фастфуда. Эта штука сама жарит котлеты, обеспечивая идеальное качество. Будущее уже на кухне!',
     link: 'https://aniai.ai',
     dateAdded: '2025-09-07',
@@ -4876,12 +4888,3 @@ export const allServices: AIService[] = [
     tags: ['Есть триал']
   }
 ];
-
-    
-
-
-
-
-
-
-    

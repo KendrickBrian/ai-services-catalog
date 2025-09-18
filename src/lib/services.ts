@@ -1,4 +1,3 @@
-
 import { allServices, AIService } from '@/data/ai-services';
 
 const ITEMS_PER_PAGE = 24;
@@ -33,13 +32,12 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
     );
   }
 
-  // Define categories where SYNTX should be pinned
-  const categoriesToPinIn = ['all', 'Текст', 'Изображения', 'Видео'];
-  const shouldPin = page === 1 && !search && categoriesToPinIn.includes(category);
-
-  // Apply sorting with safe pinning logic
+  // Apply sorting
   services.sort((a, b) => {
-    // Pinning logic
+    // Pinning logic for SYNTX
+    const pinCategories = ['all', 'Текст', 'Изображения', 'Видео'];
+    const shouldPin = page === 1 && !search && pinCategories.includes(category);
+
     if (shouldPin) {
       if (a.id === 'syntx-ai-bot' && b.id !== 'syntx-ai-bot') return -1;
       if (a.id !== 'syntx-ai-bot' && b.id === 'syntx-ai-bot') return 1;
