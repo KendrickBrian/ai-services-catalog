@@ -4,26 +4,28 @@ import { CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { handleCardClick } from '@/app/actions/telegram-actions';
 import type { AIService } from '@/data/ai-services';
-import { cn } from '@/lib/utils';
+import React, { useEffect, useState } from 'react';
 
 type PaymentServiceCardProps = {
   service: AIService;
 };
 
 export function PaymentServiceCard({ service }: PaymentServiceCardProps) {
-  const onPaymentServiceClick = () => {
+  const onCardClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
     handleCardClick({
       serviceName: service.name,
       serviceLink: service.link,
     });
-    
-    // Using window.location.href for reliable redirection
-    window.location.href = service.link;
+    window.open(service.link, '_blank', 'noopener,noreferrer');
   };
 
   return (
-    <div
-      onClick={onPaymentServiceClick}
+    <a
+      href={service.link}
+      onClick={onCardClick}
+      target="_blank"
+      rel="noopener noreferrer"
       className="bg-card/50 backdrop-blur-lg border border-green-500/50 rounded-2xl p-4 flex items-center justify-between cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-green-500/20 no-underline text-current"
     >
       <div className="flex items-center gap-4">
@@ -36,10 +38,11 @@ export function PaymentServiceCard({ service }: PaymentServiceCardProps) {
         </div>
       </div>
       <Button
+        asChild
         className="bg-green-500 hover:bg-green-600 text-white font-bold shrink-0"
       >
-        Получить
+        <span>Получить</span>
       </Button>
-    </div>
+    </a>
   );
 }

@@ -6,6 +6,7 @@ import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
 import { handleCardClick } from '@/app/actions/telegram-actions';
+import React from 'react';
 
 type AIServiceCardProps = {
   service: AIService;
@@ -74,19 +75,21 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
     return tags;
   };
 
-  const onCardClick = () => {
+  const onCardClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
     handleCardClick({
       serviceName: service.name,
       serviceLink: service.link,
     });
-    
-    // Using window.location.href for reliable redirection
-    window.location.href = service.link;
+    window.open(service.link, '_blank', 'noopener,noreferrer');
   };
 
   return (
-    <div
+    <a
+      href={service.link}
       onClick={onCardClick}
+      target="_blank"
+      rel="noopener noreferrer"
       className={cn(
         'group relative w-full bg-card/50 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer no-underline text-current'
       )}
@@ -144,13 +147,14 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
             <span>{service.popularity}K</span>
           </div>
           <Button
+            asChild
             size="sm"
             className="bg-primary/20 hover:bg-primary/40 border border-primary/50 text-white rounded-lg z-20 relative"
           >
-            Попробовать
+            <span>Попробовать</span>
           </Button>
         </div>
       </div>
-    </div>
+    </a>
   );
 }

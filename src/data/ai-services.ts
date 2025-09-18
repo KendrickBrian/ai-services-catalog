@@ -36,7 +36,7 @@ export const allServices: AIService[] = [
     name: 'SYNTX AI Bot',
     category: 'Текст',
     description: 'Один Telegram-бот для доступа к ChatGPT, Midjourney, Claude и другим популярным нейросетям.',
-    link: 'https.t.me/syntxaibot?start=aff_179606810',
+    link: 'https://t.me/syntxaibot?start=aff_179606810',
     dateAdded: '2024-05-20',
     popularity: 150,
     rating: 5.0,
@@ -4878,5 +4878,6 @@ export const allServices: AIService[] = [
 ];
 
     
+
 
 
