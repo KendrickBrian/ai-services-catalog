@@ -8,12 +8,11 @@ import { PaginationComponent } from '@/components/pagination';
 import { Skeleton } from '@/components/ui/skeleton';
 import AIServiceCard from '@/components/ai-service-card';
 import PaymentServiceCard from '@/components/payment-service-card';
+import { getServices } from '@/lib/services';
 
 type PageProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
-
-const ITEMS_PER_PAGE = 24;
 
 export default function Home({ searchParams }: PageProps) {
   const category =
@@ -24,64 +23,12 @@ export default function Home({ searchParams }: PageProps) {
   const page =
     typeof searchParams.page === 'string' ? Number(searchParams.page) : 1;
 
-  const paymentService = allServices.find((s) => s.isWantToPay);
-  const syntxService = allServices.find((s) => s.id === 'syntx-ai-bot');
-
-  // Start with all services, excluding the special ones we handle separately
-  let filteredServices = allServices.filter(
-    (s) => s.id !== paymentService?.id && s.id !== syntxService?.id
-  );
-
-  // Apply category filter
-  if (category !== 'all') {
-    filteredServices = filteredServices.filter((service) => service.category === category);
-  }
-
-  // Apply search filter
-  if (search) {
-    filteredServices = filteredServices.filter((service) =>
-      service.name.toLowerCase().includes(search.toLowerCase())
-    );
-  }
-
-  // Apply sorting with defense against invalid dates
-  switch (sort) {
-    case 'popular':
-      filteredServices.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
-      break;
-    case 'newest':
-      filteredServices.sort((a, b) => {
-          const dateA = new Date(a.dateAdded).getTime();
-          const dateB = new Date(b.dateAdded).getTime();
-          // Treat invalid dates as oldest
-          if (isNaN(dateA)) return 1;
-          if (isNaN(dateB)) return -1;
-          return dateB - dateA;
-        }
-      );
-      break;
-  }
-  
-  // Prepend the pinned SYNTX service if conditions are met (first page, no search)
-  if (syntxService && page === 1 && !search) {
-    // Ensure we don't add it if it's already there (e.g. from a filtered list)
-    const isSyntxPresent = filteredServices.some(s => s.id === syntxService.id);
-    if (!isSyntxPresent) {
-      filteredServices.unshift(syntxService);
-    }
-  }
-  
-  const totalServices = filteredServices.length;
-  const totalPages = Math.ceil(totalServices / ITEMS_PER_PAGE);
-  const paginatedServices = filteredServices.slice(
-    (page - 1) * ITEMS_PER_PAGE,
-    page * ITEMS_PER_PAGE
-  );
-
-  const allCategories = [
-    'all',
-    ...Array.from(new Set(allServices.map((s) => s.category))),
-  ].filter((c) => c !== 'Специальное');
+  const {
+    paginatedServices,
+    paymentService,
+    totalPages,
+    allCategories,
+  } = getServices({ category, sort, search, page });
 
   return (
     <div className="container mx-auto px-4 py-8">
