@@ -12,36 +12,36 @@ type GetServicesParams = {
 
 export function getServices({ category, sort, search, page }: GetServicesParams) {
   const paymentService = allServices.find((s) => s.isWantToPay);
-  const syntxService = allServices.find((s) => s.id === 'syntx-ai-bot');
 
   // Start with all services, excluding special ones that are handled separately.
-  let filteredServices = allServices.filter(
-    (s) => s.id !== paymentService?.id && s.id !== syntxService?.id
+  let services = allServices.filter(
+    (s) => s.id !== paymentService?.id
   );
 
   // Apply category filter
   if (category !== 'all') {
-    filteredServices = filteredServices.filter((service) => service.category === category);
+    services = services.filter((service) => service.category === category || service.secondaryCategory === category);
   }
 
   // Apply search filter
   if (search) {
-    filteredServices = filteredServices.filter((service) =>
-      service.name.toLowerCase().includes(search.toLowerCase())
+    const lowercasedSearch = search.toLowerCase();
+    services = services.filter((service) =>
+      service.name.toLowerCase().includes(lowercasedSearch) ||
+      service.description.toLowerCase().includes(lowercasedSearch)
     );
   }
 
   // Apply sorting
   switch (sort) {
     case 'popular':
-      filteredServices.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
+      services.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
       break;
     case 'newest':
     default:
-      filteredServices.sort((a, b) => {
+      services.sort((a, b) => {
         const dateA = new Date(a.dateAdded).getTime();
         const dateB = new Date(b.dateAdded).getTime();
-        // Treat invalid dates as oldest by pushing them to the end
         if (isNaN(dateA)) return 1;
         if (isNaN(dateB)) return -1;
         return dateB - dateA;
@@ -49,14 +49,23 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
       break;
   }
   
-  // Prepend the pinned SYNTX service if conditions are met
+  // Handle pinning of SYNTX service
+  const syntxService = allServices.find((s) => s.id === 'syntx-ai-bot');
   if (syntxService && page === 1 && !search) {
-      filteredServices.unshift(syntxService);
+    // Remove from current position and add to the top
+    const index = services.findIndex(s => s.id === syntxService.id);
+    if (index > -1) {
+      services.splice(index, 1);
+    }
+    // Only unshift if it was in the filtered list or if we're on 'all'
+    if (index > -1 || category === 'all') {
+        services.unshift(syntxService);
+    }
   }
   
-  const totalServices = filteredServices.length;
+  const totalServices = services.length;
   const totalPages = Math.ceil(totalServices / ITEMS_PER_PAGE);
-  const paginatedServices = filteredServices.slice(
+  const paginatedServices = services.slice(
     (page - 1) * ITEMS_PER_PAGE,
     page * ITEMS_PER_PAGE
   );
