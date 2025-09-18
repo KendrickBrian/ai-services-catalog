@@ -62,13 +62,13 @@ export default function Home({ searchParams }: PageProps) {
       break;
   }
   
-  // Prepend the pinned SYNTX service if conditions are met (first page, no search, any category)
+  // Prepend the pinned SYNTX service if conditions are met (first page, no search)
   if (syntxService && page === 1 && !search) {
-      // Ensure we don't add it if it's already there (e.g. from a filtered list)
-      const isSyntxPresent = filteredServices.some(s => s.id === syntxService.id);
-      if (!isSyntxPresent) {
-          filteredServices.unshift(syntxService);
-      }
+    // Ensure we don't add it if it's already there (e.g. from a filtered list)
+    const isSyntxPresent = filteredServices.some(s => s.id === syntxService.id);
+    if (!isSyntxPresent) {
+      filteredServices.unshift(syntxService);
+    }
   }
   
   const totalServices = filteredServices.length;
