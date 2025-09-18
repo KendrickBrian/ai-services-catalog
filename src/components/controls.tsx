@@ -1,22 +1,11 @@
+
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback } from 'react';
 import { cn } from '@/lib/utils';
 import {
-  FileText,
-  ImageIcon,
-  Video,
-  Music,
-  Code,
-  Sparkles,
   LayoutGrid,
-  Bot,
-  Briefcase,
-  GraduationCap,
-  HeartPulse,
-  Cuboid,
-  Zap,
   TrendingUp,
   CreditCard,
   Package,
@@ -28,6 +17,7 @@ type ControlsProps = {
 
 const iconClass = "w-5 h-5";
 
+// Replacing most lucide icons with lightweight emojis to improve performance
 const categoryIcons: { [key: string]: React.ReactNode } = {
   all: <LayoutGrid className={iconClass} />,
   Текст: '📝',
@@ -35,16 +25,16 @@ const categoryIcons: { [key: string]: React.ReactNode } = {
   Код: '💻',
   Видео: '🎬',
   Аудио: '🎵',
-  Маркетинг: <TrendingUp className={iconClass} />,
+  Маркетинг: '📈',
   Специальное: <CreditCard className={iconClass} />,
-  Дизайн: <Sparkles className={iconClass} />,
+  Дизайн: '🎨',
   Разное: <Package className={iconClass} />,
-  Автоматизация: <Bot className={iconClass} />,
-  Продуктивность: <Zap className={iconClass} />,
-  'Бизнес и финансы': <Briefcase className={iconClass} />,
-  Образование: <GraduationCap className={iconClass} />,
-  Здоровье: <HeartPulse className={iconClass} />,
-  '3D и моделирование': <Cuboid className={iconClass} />,
+  Автоматизация: '🤖',
+  Продуктивность: '⚡️',
+  'Бизнес и финансы': '💼',
+  Образование: '🎓',
+  Здоровье: '❤️‍🩹',
+  '3D и моделирование': '🧊',
 };
 
 export default function Controls({ categories }: ControlsProps) {
@@ -116,7 +106,7 @@ export default function Controls({ categories }: ControlsProps) {
                 : 'bg-card/50 text-muted-foreground hover:bg-card/90 hover:text-white'
             )}
           >
-            <span className="text-lg">{categoryIcons[cat] || categoryIcons['all']}</span>
+            <span className="text-lg">{categoryIcons[cat] || '📁'}</span>
             <span className="capitalize">{cat === 'all' ? 'Все категории' : cat}</span>
           </button>
         ))}
