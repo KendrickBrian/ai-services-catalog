@@ -10,7 +10,6 @@ import {
   Music,
   Code,
   Sparkles,
-  Search,
   LayoutGrid,
   Bot,
   Briefcase,
@@ -20,6 +19,7 @@ import {
   Zap,
   TrendingUp,
   CreditCard,
+  Package,
 } from 'lucide-react';
 
 type ControlsProps = {
@@ -36,7 +36,7 @@ const categoryIcons: { [key: string]: React.ReactNode } = {
   Маркетинг: <TrendingUp />,
   Специальное: <CreditCard />,
   Дизайн: <Sparkles />,
-  Поиск: <Search />,
+  Разное: <Package />,
   Автоматизация: <Bot />,
   Продуктивность: <Zap />,
   'Бизнес и финансы': <Briefcase />,
@@ -80,13 +80,13 @@ export default function Controls({ categories }: ControlsProps) {
     'Аудио',
     'Дизайн',
     '3D и моделирование',
-    'Поиск',
     'Маркетинг',
     'Продуктивность',
     'Автоматизация',
     'Бизнес и финансы',
     'Образование',
     'Здоровье',
+    'Разное',
   ];
 
   const sortedCategories = [...categories].sort((a, b) => {

@@ -11,14 +11,14 @@ export type AIService = {
     | 'Маркетинг'
     | 'Специальное'
     | 'Дизайн'
-    | 'Поиск'
+    | 'Разное'
     | 'Автоматизация'
     | 'Продуктивность'
     | 'Бизнес и финансы'
     | 'Образование'
     | 'Здоровье'
     | '3D и моделирование';
-  secondaryCategory?: 'Код' | 'Изображения' | 'Поиск' | 'Текст' | 'Видео' | 'Аудио' | 'Дизайн' | 'Маркетинг';
+  secondaryCategory?: 'Код' | 'Изображения' | 'Разное' | 'Текст' | 'Видео' | 'Аудио' | 'Дизайн' | 'Маркетинг';
   description: string;
   link: string;
   dateAdded: string; // YYYY-MM-DD
@@ -72,7 +72,7 @@ export const allServices: AIService[] = [
     id: 'google-gemini',
     name: 'Google Gemini 2.5 (Pro / Flash)',
     category: 'Текст',
-    secondaryCategory: 'Поиск',
+    secondaryCategory: 'Разное',
     description: 'Нейронка от Google, которая шарит в интернете лучше всех. Gemini 2.5 Pro — это мощь, а Flash — скорость. Идеально интегрирована в экосистему Google, так что это твой личный ассистент во всем.',
     link: 'https://gemini.google.com',
     dateAdded: '2025-09-09',
@@ -128,7 +128,7 @@ export const allServices: AIService[] = [
   {
     id: 'perplexity-ai',
     name: 'Perplexity AI',
-    category: 'Поиск',
+    category: 'Разное',
     secondaryCategory: 'Текст',
     description: 'Это Google на стероидах. Не просто кидает ссылки, а дает готовый ответ с пруфами. Мастхэв для студентов и ресерчеров. Бесплатная версия — огонь.',
     link: 'https://www.perplexity.ai/',
@@ -139,7 +139,7 @@ export const allServices: AIService[] = [
   },
   {
     id: 'xai-grok',
-    name: 'Grok 3',
+    name: 'Grok 4',
     category: 'Текст',
     description: 'Нейронка от Илона Маска со своим характером. Имеет доступ к данным из X (бывший Twitter) в реальном времени, так что всегда в курсе последних событий. Пользователи X Premium+ получают максимум фишек.',
     link: 'https://x.ai',
@@ -380,8 +380,8 @@ export const allServices: AIService[] = [
   {
     id: 'phind',
     name: 'Phind',
-    category: 'Код',
-    secondaryCategory: 'Поиск',
+    category: 'Разное',
+    secondaryCategory: 'Код',
     description: 'Поисковик специально для кодеров. Задаешь вопрос по коду — получаешь ответ с примерами и объяснениями. Бесплатная версия — огонь.',
     link: 'https://www.phind.com/',
     dateAdded: '2023-12-10',
@@ -531,7 +531,7 @@ export const allServices: AIService[] = [
     id: 'lexica',
     name: 'Lexica',
     category: 'Изображения',
-    secondaryCategory: 'Поиск',
+    secondaryCategory: 'Разное',
     description: 'Огромная галерея картинок, сгенерированных нейросетями. Можно найти референс, подсмотреть промпт или создать свое. Есть бесплатный план.',
     link: 'https://lexica.art/',
     dateAdded: '2023-12-01',
@@ -735,7 +735,7 @@ export const allServices: AIService[] = [
   {
     id: 'youcom',
     name: 'You.com',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'AI-поисковик с кастомизацией. Можно выбрать, откуда брать информацию, и общаться с ним в разных режимах. Бесплатный.',
     link: 'https://you.com/',
     dateAdded: '2023-11-01',
@@ -879,7 +879,7 @@ export const allServices: AIService[] = [
   {
     id: 'metaphor',
     name: 'Metaphor',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Поисковик, который думает иначе. Вместо ключевых слов ты даешь ему пример того, что ищешь, и он находит похожее. Бесплатный.',
     link: 'https://metaphor.systems/',
     dateAdded: '2024-02-01',
@@ -1046,7 +1046,7 @@ export const allServices: AIService[] = [
   {
     id: 'andisearch',
     name: 'Andi',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Разговорный AI-поисковик, который дает прямые ответы вместо синих ссылок. Бесплатный и без рекламы.',
     link: 'https://andisearch.com/',
     dateAdded: '2024-03-10',
@@ -1057,7 +1057,7 @@ export const allServices: AIService[] = [
   {
     id: 'komo-ai',
     name: 'Komo AI',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Быстрый и приватный AI-поисковик для тех, кто устал от рекламы. Помогает глубоко исследовать темы. Бесплатный.',
     link: 'https://komo.ai/',
     dateAdded: '2024-04-15',
@@ -1345,7 +1345,7 @@ export const allServices: AIService[] = [
   {
     id: 'perplexity-labs',
     name: 'Perplexity Labs',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Песочница от Perplexity AI, где можно бесплатно потестировать их самые новые и экспериментальные языковые модели.',
     link: 'https://labs.perplexity.ai/',
     dateAdded: '2024-05-05',
@@ -1378,7 +1378,7 @@ export const allServices: AIService[] = [
   {
     id: 'kimi-ai',
     name: 'Kimi.аi',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Представь, что у тебя есть личный аналитик. Этот AI-агент сам просканирует кучу сайтов и соберет для тебя всю инфу по теме. Мощный инструмент для исследований.',
     link: 'https://www.kimi.com/',
     dateAdded: '2025-09-05',
@@ -1400,7 +1400,7 @@ export const allServices: AIService[] = [
   {
     id: 'trace-moe',
     name: 'trace.moe',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Увидел мем из аниме, но не знаешь, откуда он? Этот "Shazam для аниме" найдет серию и таймкод по любой картинке. Гениально!',
     link: 'https://trace.moe/',
     dateAdded: '2025-09-05',
@@ -1499,7 +1499,7 @@ export const allServices: AIService[] = [
   {
     id: 'allaitools-dev',
     name: 'allaitools.dev',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Огромная библиотека, где собрано больше 2500 нейросетей на все случаи жизни. Если не знаешь, что искать — ищи здесь.',
     link: 'https://www.allaitools.dev/tools',
     dateAdded: '2025-09-05',
@@ -1620,7 +1620,7 @@ export const allServices: AIService[] = [
   {
     id: 'chat4data',
     name: 'Chat4Data',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Даешь ему ссылку на сайт, а он собирает с него все нужные данные. Удобно для анализа конкурентов или сбора информации.',
     link: 'https://chat4data.ai/',
     dateAdded: '2025-09-05',
@@ -1686,7 +1686,7 @@ export const allServices: AIService[] = [
   {
     id: 'doppio-labs',
     name: 'Doppio Labs',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Немного криповый, но мощный сервис, который ищет людей в сети по текстовому описанию. OSINT на максималках.',
     link: 'https://www.doppio-labs.com/',
     dateAdded: '2025-09-05',
@@ -1785,7 +1785,7 @@ export const allServices: AIService[] = [
   {
     id: 'altindex',
     name: 'AltIndex',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Хочешь инвестировать как профи? Этот сервис анализирует нетипичные данные (например, соцсети), чтобы дать тебе преимущество на рынке.',
     link: 'https://altindex.com/',
     dateAdded: '2025-09-05',
@@ -1851,7 +1851,7 @@ export const allServices: AIService[] = [
   {
     id: 'ambience',
     name: 'Ambience',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Это как App Store для нейронок. Более 1000 AI-приложений в одном месте, включая бесплатный доступ к GPT-4 и Claude 3. ',
     link: 'https://ambience.com/',
     dateAdded: '2025-09-05',
@@ -1862,7 +1862,7 @@ export const allServices: AIService[] = [
   {
     id: 'bagoodex',
     name: 'Bagoodex',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Улучшенный поиск для бизнеса, который заботится о конфиденциальности твоих данных.',
     link: 'https://bagoodex.io',
     dateAdded: '2025-09-05',
@@ -1961,7 +1961,7 @@ export const allServices: AIService[] = [
   {
     id: 'accio',
     name: 'Accio',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Нужно быстро проанализировать кучу инфы для исследования? Этот сервис использует AI, чтобы найти нужные данные и выявить главное.',
     link: 'https://www.accio.com/',
     dateAdded: '2025-09-05',
@@ -2115,7 +2115,7 @@ export const allServices: AIService[] = [
   {
     id: 'ai-lawyer',
     name: 'AI Lawyer',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Твой личный юрист в кармане. Помогает с поиском информации, составлением документов и дает быстрые консультации.',
     link: 'https://ailawyer.pro/',
     dateAdded: '2025-09-05',
@@ -2401,7 +2401,7 @@ export const allServices: AIService[] = [
   {
     id: 'afforai',
     name: 'Afforai',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'AI-ассистент для исследований. Умеет искать информацию, анализировать документы, обобщать данные и отвечать на вопросы, помогая исследователям, студентам и аналитикам экономить время.',
     link: 'https://afforai.com/',
     dateAdded: '2025-09-05',
@@ -2500,7 +2500,7 @@ export const allServices: AIService[] = [
   {
     id: 'bigshort',
     name: 'BigShort',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'AI-аналитик для фондового рынка. Дает инсайты и торговые стратегии в реальном времени.',
     link: 'https://bigshort.com',
     dateAdded: '2025-09-06',
@@ -2588,7 +2588,7 @@ export const allServices: AIService[] = [
   {
     id: 'bioraptor',
     name: 'BioRaptor',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Серьезный инструмент для ученых-биологов. Помогает анализировать данные экспериментов и ускоряет исследования.',
     link: 'https://www.bioraptor.ai',
     dateAdded: '2025-09-06',
@@ -2709,7 +2709,7 @@ export const allServices: AIService[] = [
   {
     id: 'akela-hub',
     name: 'Akela Hub',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'AI-скаут для инвесторов и корпораций. Ищет по всему миру перспективные стартапы и технологии.',
     link: 'https://akelahub.com',
     dateAdded: '2025-09-06',
@@ -2797,7 +2797,7 @@ export const allServices: AIService[] = [
   {
     id: 'bench-iq',
     name: 'Bench IQ',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'AI для юристов. Анализирует судебную практику, находит прецеденты и помогает выстраивать стратегию защиты.',
     link: 'https://benchiq.com',
     dateAdded: '2025-09-06',
@@ -2896,7 +2896,7 @@ export const allServices: AIService[] = [
   {
     id: '4manalytics',
     name: '4mAnalytics',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Это серьезный инструмент для строителей и инженеров. Он использует ИИ для картирования подземных коммуникаций (труб, кабелей). Помогает избежать ошибок при планировании и строительстве, используя актуальные данные.',
     link: 'https://www.4manalytics.com',
     dateAdded: '2025-09-06',
@@ -3314,7 +3314,7 @@ export const allServices: AIService[] = [
   {
     id: 'athena',
     name: 'Athena',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'AI для военных. Помогает анализировать обстановку и принимать быстрые решения в сложных ситуациях.',
     link: 'https://athenadefence.ai',
     dateAdded: '2025-09-06',
@@ -3413,7 +3413,7 @@ export const allServices: AIService[] = [
   {
     id: 'atlan',
     name: 'Atlan',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Это как Google для данных твоей компании. Помогает быстро находить нужные таблицы, отчеты и дашборды.',
     link: 'https://atlan.com',
     dateAdded: '2025-09-06',
@@ -3468,7 +3468,7 @@ export const allServices: AIService[] = [
   {
     id: 'bioptimus',
     name: 'Bioptimus',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'AI для биологов. Ускоряет исследования, анализируя данные и предсказывая результаты экспериментов.',
     link: 'https://www.bioptimus.com',
     dateAdded: '2025-09-06',
@@ -3523,7 +3523,7 @@ export const allServices: AIService[] = [
   {
     id: 'apriora',
     name: 'Apriora',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'AI-платформа, которая помогает принимать решения, анализируя данные и предсказывая возможные исходы.',
     link: 'https://www.apriora.com/',
     dateAdded: '2025-09-06',
@@ -3556,7 +3556,7 @@ export const allServices: AIService[] = [
   {
     id: 'archetype-ai',
     name: 'Archetype AI',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Превращает данные с датчиков (камеры, микрофоны) в понятные инсайты. Помогает понять, что происходит в физическом мире.',
     link: 'https://www.archetype.ai/',
     dateAdded: '2025-09-06',
@@ -3567,7 +3567,7 @@ export const allServices: AIService[] = [
   {
     id: 'aui',
     name: 'Aui',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Эта штука встраивается в твои рабочие инструменты и помогает быстро находить нужные данные, выдавая инсайты в реальном времени. Ускоряет аналитику.',
     link: 'https://www.aui.com/',
     dateAdded: '2025-09-07',
@@ -3699,7 +3699,7 @@ export const allServices: AIService[] = [
   {
     id: 'augurisk',
     name: 'Augurisk',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Эта нейронка оценивает риски. Помогает понять, насколько опасно жить в определенном районе (от ураганов до преступности). Бесплатный анализ.',
     link: 'https://www.augurisk.com/',
     dateAdded: '2025-09-07',
@@ -3743,7 +3743,7 @@ export const allServices: AIService[] = [
   {
     id: 'base64-ai',
     name: 'Base64.ai',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Эта нейронка вытаскивает данные из любых документов: паспортов, счетов, чеков. Загрузил скан — получил структурированную инфу. Без кода.',
     link: 'https://www.base64.ai/',
     dateAdded: '2025-09-07',
@@ -3919,7 +3919,7 @@ export const allServices: AIService[] = [
   {
     id: 'altar',
     name: 'Altar',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Эта нейронка помогает превратить твою идею в готовый продукт, давая персонализированные советы и инсайты.',
     link: 'https://www.altar.ai/',
     dateAdded: '2025-09-07',
@@ -4096,7 +4096,7 @@ export const allServices: AIService[] = [
     id: 'autoresponder-ai',
     name: 'AutoResponder.ai',
     category: 'Автоматизация',
-    description: 'Инструмент на базе AI для настраиваемых автоматических ответов в мессенджерах.',
+    description: 'Инструмент на базе ИИ для настраиваемых автоматических ответов в мессенджерах.',
     link: 'https://www.autoresponder.ai',
     dateAdded: '2025-09-07',
     popularity: 210,
@@ -4634,7 +4634,7 @@ export const allServices: AIService[] = [
   {
     id: 'archive-intel',
     name: 'Archive Intel',
-    category: 'Поиск',
+    category: 'Разное',
     description: 'Архивация, поиск и безопасное управление данными на базе ИИ.',
     link: 'https://archiveintel.com/',
     dateAdded: '2025-09-07',
@@ -4878,3 +4878,4 @@ export const allServices: AIService[] = [
 ];
 
     
+
