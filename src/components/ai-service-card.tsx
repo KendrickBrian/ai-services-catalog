@@ -1,12 +1,10 @@
-'use client';
-
 import { Star, Flame, CheckCircle, Users } from 'lucide-react';
 import { AIService } from '@/data/ai-services';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
-import { handleCardClick } from '@/app/actions/telegram-actions';
 import React from 'react';
+import ServiceCardLink from './service-card-link';
 
 type AIServiceCardProps = {
   service: AIService;
@@ -45,51 +43,39 @@ const iconMap: { [key: string]: React.ReactNode } = {
   ),
 };
 
-export default function AIServiceCard({ service }: AIServiceCardProps) {
-  const getTags = () => {
-    const tags = [];
-    if (service.tags) {
-      if (service.tags.includes('Бесплатно')) {
-        tags.push(
-          <div
-            key="free"
-            className="flex items-center gap-1 text-green-400 text-xs"
-          >
-            <CheckCircle className="w-3 h-3" />
-            Бесплатно
-          </div>
-        );
-      }
-      if (service.tags.includes('Есть триал')) {
-        tags.push(
-          <div
-            key="trial"
-            className="flex items-center gap-1 text-blue-400 text-xs"
-          >
-            <Flame className="w-3 h-3" />
-            Есть триал
-          </div>
-        );
-      }
+const getTags = (service: AIService) => {
+  const tags = [];
+  if (service.tags) {
+    if (service.tags.includes('Бесплатно')) {
+      tags.push(
+        <div
+          key="free"
+          className="flex items-center gap-1 text-green-400 text-xs"
+        >
+          <CheckCircle className="w-3 h-3" />
+          Бесплатно
+        </div>
+      );
     }
-    return tags;
-  };
+    if (service.tags.includes('Есть триал')) {
+      tags.push(
+        <div
+          key="trial"
+          className="flex items-center gap-1 text-blue-400 text-xs"
+        >
+          <Flame className="w-3 h-3" />
+          Есть триал
+        </div>
+      );
+    }
+  }
+  return tags;
+};
 
-  const onCardClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    handleCardClick({
-      serviceName: service.name,
-      serviceLink: service.link,
-    });
-    window.open(service.link, '_blank', 'noopener,noreferrer');
-  };
-
+export default function AIServiceCard({ service }: AIServiceCardProps) {
   return (
-    <a
-      href={service.link}
-      onClick={onCardClick}
-      target="_blank"
-      rel="noopener noreferrer"
+    <ServiceCardLink
+      service={service}
       className={cn(
         'group relative w-full bg-card/50 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer no-underline text-current'
       )}
@@ -139,7 +125,7 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
           {service.description}
         </p>
 
-        <div className="flex items-center gap-3 mb-4">{getTags()}</div>
+        <div className="flex items-center gap-3 mb-4">{getTags(service)}</div>
 
         <div className="flex justify-between items-center mt-auto">
           <div className="flex items-center gap-1.5 text-muted-foreground text-sm">
@@ -155,6 +141,6 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
           </Button>
         </div>
       </div>
-    </a>
+    </ServiceCardLink>
   );
 }
