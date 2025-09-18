@@ -17,14 +17,8 @@ export function PaymentServiceCard({ service }: PaymentServiceCardProps) {
       serviceLink: service.link,
     });
     
-    // This logic now correctly assumes it only runs on the client.
-    // The `window` object is always available here.
-    const tg = (window as any).Telegram;
-    if (tg && tg.WebApp && tg.WebApp.platform !== 'unknown') {
-        tg.WebApp.openLink(service.link);
-    } else {
-        window.open(service.link, '_blank', 'noopener,noreferrer');
-    }
+    // Using window.location.href for reliable redirection
+    window.location.href = service.link;
   };
 
   return (
