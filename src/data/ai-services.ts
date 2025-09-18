@@ -72,7 +72,7 @@ export const allServices: AIService[] = [
     id: 'google-gemini',
     name: 'Google Gemini 2.5 (Pro / Flash)',
     category: 'Текст',
-    secondaryCategory: 'Изображения',
+    secondaryCategory: 'Поиск',
     description: 'Нейронка от Google, которая шарит в интернете лучше всех. Gemini 2.5 Pro — это мощь, а Flash — скорость. Идеально интегрирована в экосистему Google, так что это твой личный ассистент во всем.',
     link: 'https://gemini.google.com',
     dateAdded: '2025-09-09',
@@ -249,7 +249,7 @@ export const allServices: AIService[] = [
     dateAdded: '2024-03-01',
     popularity: 400,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'playground-ai',
@@ -266,7 +266,7 @@ export const allServices: AIService[] = [
     id: 'ideogram-ai',
     name: 'Ideogram AI',
     category: 'Изображения',
-    secondaryCategory: 'Текст',
+    secondaryCategory: 'Дизайн',
     description: 'Эта нейронка — топ, если тебе нужен читаемый текст на картинке. Идеально для логотипов и постеров. Бесплатные кредиты каждый день.',
     link: 'https://ideogram.ai/',
     dateAdded: '2023-12-01',
@@ -284,7 +284,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-07-10',
     popularity: 750,
     rating: 4.8,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'heygen',
@@ -341,7 +341,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-11-05',
     popularity: 500,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'aiva',
@@ -375,7 +375,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-09-01',
     popularity: 700,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'phind',
@@ -423,7 +423,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-08-01',
     popularity: 550,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'want-to-pay',
@@ -456,7 +456,7 @@ export const allServices: AIService[] = [
     dateAdded: '2024-02-10',
     popularity: 850,
     rating: 4.7,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'elevenlabs',
@@ -467,7 +467,7 @@ export const allServices: AIService[] = [
     dateAdded: '2024-01-20',
     popularity: 880,
     rating: 4.8,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'github-copilot',
@@ -560,7 +560,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-11-01',
     popularity: 200,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'pictory',
@@ -584,7 +584,7 @@ export const allServices: AIService[] = [
     dateAdded: '2024-02-01',
     popularity: 400,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'd-id',
@@ -606,7 +606,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-11-01',
     popularity: 300,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'voicemy-ai',
@@ -617,7 +617,7 @@ export const allServices: AIService[] = [
     dateAdded: '2024-01-01',
     popularity: 250,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'adobe-podcast',
@@ -650,7 +650,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-12-01',
     popularity: 250,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'tabnine',
@@ -661,7 +661,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-11-01',
     popularity: 350,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'semrush',
@@ -684,7 +684,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-11-01',
     popularity: 400,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'rytr',
@@ -796,7 +796,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-09-01',
     popularity: 250,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'pika',
@@ -807,7 +807,7 @@ export const allServices: AIService[] = [
     dateAdded: '2024-04-01',
     popularity: 450,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'synthesia',
@@ -918,7 +918,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-08-25',
     popularity: 280,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'civitai',
@@ -940,7 +940,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-11-05',
     popularity: 220,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'veed-io',
@@ -951,7 +951,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-10-12',
     popularity: 380,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'soundraw',
@@ -1074,7 +1074,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-05-10',
     popularity: 700,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'wordtune',
@@ -1085,7 +1085,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-06-15',
     popularity: 550,
     rating: 4.7,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'stable-diffusion',
@@ -1120,7 +1120,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-08-12',
     popularity: 350,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'wisecut',
@@ -1131,7 +1131,7 @@ export const allServices: AIService[] = [
     dateAdded: '2024-01-18',
     popularity: 280,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'krisp',
@@ -1199,7 +1199,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-07-25',
     popularity: 310,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'canva',
@@ -1211,7 +1211,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-02-01',
     popularity: 950,
     rating: 4.8,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'framer',
@@ -1235,7 +1235,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-11-10',
     popularity: 500,
     rating: 4.7,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'caption-ai',
@@ -1271,12 +1271,12 @@ export const allServices: AIService[] = [
     dateAdded: '2023-08-01',
     popularity: 600,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'aiprm',
     name: 'AIPRM',
-    category: 'Текст',
+    category: 'Продуктивность',
     description: 'Расширение для браузера, которое добавляет в ChatGPT тысячи готовых промптов для разных задач. Есть бесплатная версия.',
     link: 'https://www.aiprm.com/',
     dateAdded: '2023-07-01',
@@ -1317,7 +1317,7 @@ export const allServices: AIService[] = [
     dateAdded: '2023-10-25',
     popularity: 300,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'content-at-scale',
@@ -1670,7 +1670,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 480,
     rating: 4.8,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'orchids',
@@ -1714,7 +1714,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 380,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'akkio',
@@ -1725,7 +1725,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 290,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'activecampaign-ai',
@@ -1736,7 +1736,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 350,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'beatopia',
@@ -1747,7 +1747,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 280,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'bebop',
@@ -1758,7 +1758,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 220,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'beedone',
@@ -1769,7 +1769,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 190,
     rating: 4.2,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'amazon-forecast',
@@ -1780,7 +1780,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 310,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'altindex',
@@ -1791,7 +1791,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 260,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'alter-ai',
@@ -1802,7 +1802,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 230,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'akool',
@@ -1813,7 +1813,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 340,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'abbyy',
@@ -1824,7 +1824,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 420,
     rating: 4.7,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'accountabilabuddy',
@@ -1956,7 +1956,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 250,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'accio',
@@ -2022,7 +2022,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 240,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'bible-ai',
@@ -2033,7 +2033,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 190,
     rating: 4.2,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'bidlytics',
@@ -2044,7 +2044,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 170,
     rating: 4.1,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'book-witch',
@@ -2055,7 +2055,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 220,
     rating: 4.2,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'booke-ai',
@@ -2066,7 +2066,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 270,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: '1forall',
@@ -2077,7 +2077,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 300,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'aha-inc',
@@ -2088,7 +2088,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 210,
     rating: 4.2,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'ai-cover-letter-generator',
@@ -2099,7 +2099,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 260,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'ai-home-design',
@@ -2110,7 +2110,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 320,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'ai-lawyer',
@@ -2121,7 +2121,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 280,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'ai-phone',
@@ -2132,7 +2132,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 310,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'ai-trip-planner',
@@ -2143,7 +2143,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 190,
     rating: 4.1,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'ai2image',
@@ -2154,7 +2154,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 270,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'aiapply',
@@ -2165,7 +2165,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 240,
     rating: 4.2,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'bible-chat',
@@ -2176,7 +2176,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 180,
     rating: 4.1,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'botly',
@@ -2187,7 +2187,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 150,
     rating: 4.0,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'azara',
@@ -2198,7 +2198,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 290,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'alpha-loops',
@@ -2319,7 +2319,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 320,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'autodesk-forma',
@@ -2363,7 +2363,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-05',
     popularity: 280,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: '1px-ai',
@@ -2451,7 +2451,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 300,
     rating: 4.2,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'arcwise',
@@ -2462,7 +2462,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 280,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'ariha-ai',
@@ -2473,7 +2473,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 220,
     rating: 4.1,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'assemblyai',
@@ -2495,7 +2495,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 270,
     rating: 4.5,
-    tags: ['Платный с триал'],
+    tags: ['Платный с триалом'],
   },
   {
     id: 'bigshort',
@@ -2594,7 +2594,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 180,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'asktosell',
@@ -2874,7 +2874,7 @@ export const allServices: AIService[] = [
   {
     id: '11x',
     name: '11x',
-    category: 'Текст',
+    category: 'Автоматизация',
     description: 'Представь, что у вас есть неутомимый менеджер по продажам, который работает 24/7. Этот сервис автоматизирует поиск клиентов и общение с ними с помощью ИИ, помогая увеличить продажи без лишних усилий.',
     link: 'https://www.11x.ai',
     dateAdded: '2025-09-06',
@@ -2885,7 +2885,7 @@ export const allServices: AIService[] = [
   {
     id: '247-ai',
     name: '247.ai',
-    category: 'Текст',
+    category: 'Автоматизация',
     description: 'Если у вас бизнес и нужно организовать поддержку клиентов, этот сервис — то, что надо. Он использует ИИ, чтобы отвечать на вопросы клиентов в чатах, по телефону и email, делая поддержку быстрой и эффективной.',
     link: 'https://www.247.ai',
     dateAdded: '2025-09-06',
@@ -2897,7 +2897,7 @@ export const allServices: AIService[] = [
     id: '4manalytics',
     name: '4mAnalytics',
     category: 'Поиск',
-    description: 'Это серьезный инструмент для строителей и инженеров. Он использует ИИ для картирования подземных коммуникаций (труб, кабелей. Помогает избежать ошибок при планировании и строительстве, используя актуальные данные.',
+    description: 'Это серьезный инструмент для строителей и инженеров. Он использует ИИ для картирования подземных коммуникаций (труб, кабелей). Помогает избежать ошибок при планировании и строительстве, используя актуальные данные.',
     link: 'https://www.4manalytics.com',
     dateAdded: '2025-09-06',
     popularity: 230,
@@ -2907,8 +2907,8 @@ export const allServices: AIService[] = [
   {
     id: 'activebatch',
     name: 'ActiveBatch',
-    category: 'Код',
-    description: 'Представь, что повторяющиеся задачи (например, отправка отчетов, обработка данных выполняются сами собой. Этот инструмент позволяет настроить такую автоматизацию без программирования. Экономит время и снижает риск ошибок.',
+    category: 'Автоматизация',
+    description: 'Представь, что повторяющиеся задачи (например, отправка отчетов, обработка данных) выполняются сами собой. Этот инструмент позволяет настроить такую автоматизацию без программирования. Экономит время и снижает риск ошибок.',
     link: 'https://www.advsyscon.com/en-us/activebatch/',
     dateAdded: '2025-09-06',
     popularity: 280,
@@ -2918,7 +2918,7 @@ export const allServices: AIService[] = [
   {
     id: 'ada',
     name: 'Ada',
-    category: 'Текст',
+    category: 'Автоматизация',
     description: 'Один из лидеров в создании чат-ботов для бизнеса. Помогает интернет-магазинам и финтех-компаниям автоматизировать поддержку.',
     link: 'https://www.ada.cx/',
     dateAdded: '2025-09-06',
@@ -2929,7 +2929,7 @@ export const allServices: AIService[] = [
   {
     id: 'addy-ai',
     name: 'Addy AI',
-    category: 'Текст',
+    category: 'Продуктивность',
     description: 'Твой личный ассистент для почты. Сам пишет ответы, сокращает длинные переписки и переводит письма. Экономит кучу времени.',
     link: 'https://addy.so/',
     dateAdded: '2025-09-06',
@@ -2941,7 +2941,7 @@ export const allServices: AIService[] = [
     id: 'adept',
     name: 'Adept',
     category: 'Автоматизация',
-    description: 'AI-ассистент, который умеет работать в любом софте. Говоришь ему "сделай отчет в Excel", и он делает. Будущее автоматизации.',
+    description: 'AI-ассистент, который может выполнять задачи в любом ПО от вашего имени. Вы даете ему команду на естественном языке (например, "сгенерируй отчет по продажам за прошлый месяц в Salesforce"), и он делает это за вас.',
     link: 'https://www.adept.ai/',
     dateAdded: '2025-09-06',
     popularity: 380,
@@ -2952,7 +2952,7 @@ export const allServices: AIService[] = [
     id: 'adversa',
     name: 'Adversa',
     category: 'Автоматизация',
-    description: 'Инструмент для безопасников. Помогает находить дыры в AI-системах и защищать их от атак.',
+    description: 'Специализированный инструмент для повышения безопасности ИИ-систем. Помогает выявлять уязвимости в моделях машинного обучения, проводить стресс-тесты и обеспечивать соответствие стандартам безопасности.',
     link: 'https://adversa.ai',
     dateAdded: '2025-09-06',
     popularity: 210,
@@ -2963,7 +2963,7 @@ export const allServices: AIService[] = [
     id: 'agentic',
     name: 'Agentic',
     category: 'Автоматизация',
-    description: 'Для разрабов игр: сервис, который помогает создавать умных ботов для тестирования, NPC с продвинутым поведением и многого другого.',
+    description: 'Сервис для разработчиков игр, позволяющий легко создавать и внедрять AI-агентов (ботов) для тестирования игр, обеспечения ликвидности игроков или создания NPC с продвинутым поведением.',
     link: 'https://www.agentic.ai/',
     dateAdded: '2025-09-06',
     popularity: 250,
@@ -2985,7 +2985,7 @@ export const allServices: AIService[] = [
     id: 'airops',
     name: 'AirOps',
     category: 'Автоматизация',
-    description: 'AI-помощник для тех, кто работает с данными. Помогает писать SQL-запросы, создавать документацию и автоматизировать отчеты.',
+    description: 'AI-помощник для работы с данными: помогает писать SQL-запросы, создавать документацию и автоматизировать рабочие процессы с данными.',
     link: 'https://www.airops.com/',
     dateAdded: '2025-09-06',
     popularity: 290,
@@ -3001,18 +3001,18 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 240,
     rating: 4.2,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'ai-ml-api',
     name: 'AI/ML API',
-    category: 'Текст',
+    category: 'Код',
     description: 'Платформа, которая дает доступ к более чем 100 разным AI-моделям через единый интерфейс. Совместима с OpenAI.',
     link: 'https://aimlapi.com/',
     dateAdded: '2025-09-06',
     popularity: 310,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'aiorde',
@@ -3034,12 +3034,12 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 360,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'aisera',
     name: 'Aisera',
-    category: 'Текст',
+    category: 'Автоматизация',
     description: 'AI-платформа, которая автоматизирует IT-поддержку в компаниях. Сама решает проблемы сотрудников, разгружая айтишников.',
     link: 'https://aisera.com',
     dateAdded: '2025-09-06',
@@ -3149,7 +3149,7 @@ export const allServices: AIService[] = [
   {
     id: 'bluewhite',
     name: 'Bluewhite',
-    category: 'Поиск',
+    category: 'Автоматизация',
     description: 'Роботы для фермеров. Эта технология превращает обычные тракторы в автономные машины, которые работают 24/7.',
     link: 'https://www.bluewhite.co/',
     dateAdded: '2025-09-06',
@@ -3177,29 +3177,29 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 240,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'arkdesign',
     name: 'ArkDesign',
-    category: 'Изображения',
+    category: 'Дизайн',
     description: 'AI для архитекторов. Помогает быстро создавать проекты зданий, которые соответствуют всем строительным нормам.',
     link: 'https://arkdesign.ai/',
     dateAdded: '2025-09-06',
     popularity: 270,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'blue-prism',
     name: 'Blue Prism',
-    category: 'Текст',
+    category: 'Автоматизация',
     description: 'Один из пионеров в роботизации бизнес-процессов. Помогает крупным компаниям автоматизировать рутинные задачи.',
     link: 'https://www.blueprism.com/',
     dateAdded: '2025-09-06',
     popularity: 320,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'alphathena',
@@ -3397,7 +3397,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 350,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'antithesis',
@@ -3408,7 +3408,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 290,
     rating: 4.7,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'atlan',
@@ -3419,7 +3419,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 340,
     rating: 4.8,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'atlas-design',
@@ -3430,7 +3430,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 280,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'attentive',
@@ -3441,7 +3441,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 250,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'anon',
@@ -3463,7 +3463,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 260,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'bioptimus',
@@ -3474,7 +3474,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-06',
     popularity: 210,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'astrocade',
@@ -3749,7 +3749,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 280,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'blizzy-ai',
@@ -3760,7 +3760,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 250,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'bashsenpai',
@@ -3771,7 +3771,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 210,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'blaze-sql',
@@ -3782,7 +3782,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 260,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'blackore',
@@ -3793,7 +3793,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 230,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'audioread',
@@ -3804,7 +3804,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 290,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'blaze',
@@ -3815,29 +3815,18 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 270,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'blend-ai',
     name: 'Blend AI',
-    category: 'Текст',
+    category: 'Маркетинг',
     description: 'AI для интернет-магазинов. Генерирует описания товаров, рекламные тексты и другой контент, чтобы увеличить продажи.',
     link: 'https://www.blendnow.com/ai-suite',
     dateAdded: '2025-09-07',
     popularity: 240,
     rating: 4.2,
-    tags: ['Бесплатно', 'Есть триал'],
-  },
-  {
-    id: 'alpha3d',
-    name: 'Alpha3D',
-    category: '3D и моделирование',
-    description: 'Настоящая магия: закидываешь обычную 2D-картинку, а на выходе получаешь полноценную 3D-модель. Идеально для игр и VR.',
-    link: 'https://alpha3d.io',
-    dateAdded: '2025-09-07',
-    popularity: 300,
-    rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'all-in-one-accessibility',
@@ -3848,7 +3837,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 280,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'audioshake',
@@ -3859,7 +3848,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 320,
     rating: 4.7,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'audiostack',
@@ -3870,7 +3859,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 270,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'augmenta',
@@ -3881,7 +3870,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 250,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'aithorseo',
@@ -3908,7 +3897,7 @@ export const allServices: AIService[] = [
   {
     id: 'blitzbear',
     name: 'BlitzBear',
-    category: 'Текст',
+    category: 'Маркетинг',
     description: 'AI-помощник для SEO-шников. Помогает с оптимизацией сайта и написанием контента, чтобы быть выше в поиске.',
     link: 'https://blitzbear.com/',
     dateAdded: '2025-09-07',
@@ -3939,17 +3928,6 @@ export const allServices: AIService[] = [
     tags: ['Бесплатно'],
   },
   {
-    id: 'blackbox-ai-2',
-    name: 'BlackBox AI',
-    category: 'Код',
-    description: 'Короче, пишешь код, а эта нейронка тебе его автодополняет. Работает с 20+ языками программирования и помогает искать код, который тебе нужен. Для кодеров — вещь!',
-    link: 'https://www.useblackbox.io',
-    dateAdded: '2025-09-07',
-    popularity: 380,
-    rating: 4.5,
-    tags: ['Бесплатно'],
-  },
-  {
     id: 'ai-video-cut',
     name: 'AI Video Cut',
     category: 'Видео',
@@ -3969,7 +3947,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 380,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'bloop',
@@ -4167,7 +4145,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 290,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'ai-image-enlarger',
@@ -4211,7 +4189,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 260,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'book-ai-writer',
@@ -4233,7 +4211,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 310,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'beebee-ai',
@@ -4277,7 +4255,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 390,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'aimreply',
@@ -4299,7 +4277,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 250,
     rating: 4.1,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'airbrush',
@@ -4310,7 +4288,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 300,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'ai2sql',
@@ -4321,7 +4299,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 290,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'activeloop-ai',
@@ -4332,7 +4310,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 270,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'aporia',
@@ -4343,7 +4321,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 260,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'argil',
@@ -4354,18 +4332,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 250,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
-  },
-  {
-    id: 'artbreeder',
-    name: 'Artbreeder',
-    category: 'Изображения',
-    description: 'Хочешь почувствовать себя генетиком, но в мире артов? Эта нейронка позволяет "скрещивать" картинки, получая новые, уникальные изображения. Можно часами залипать, миксуя стили и образы. Есть бесплатный план, чтобы начать эксперименты.',
-    link: 'https://www.artbreeder.com/',
-    dateAdded: '2025-09-07',
-    popularity: 280,
-    rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'autocut',
@@ -4387,7 +4354,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 450,
     rating: 4.7,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'alter',
@@ -4409,7 +4376,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 380,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'bonitasoft',
@@ -4420,7 +4387,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 290,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'assets-scout',
@@ -4464,7 +4431,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 310,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'blinq',
@@ -4497,7 +4464,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 340,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'aithor',
@@ -4673,7 +4640,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 600,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'grammarly',
@@ -4684,7 +4651,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 900,
     rating: 4.8,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'rapidapi',
@@ -4706,7 +4673,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 800,
     rating: 4.8,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'deepl',
@@ -4750,7 +4717,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 300,
     rating: 4.3,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'langchain',
@@ -4783,7 +4750,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 350,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'replicate',
@@ -4794,7 +4761,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 550,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'wix-ai',
@@ -4805,7 +4772,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 800,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'shortlyai',
@@ -4838,7 +4805,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 350,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'speechify',
@@ -4849,7 +4816,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 600,
     rating: 4.7,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'lovo-ai',
@@ -4860,7 +4827,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 450,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'neural-love',
@@ -4871,7 +4838,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 400,
     rating: 4.5,
-    tags: ['Бесплатно', 'Есть триал'],
+    tags: ['Есть триал'],
   },
   {
     id: 'contentbot-ai',
@@ -4882,18 +4849,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 320,
     rating: 4.4,
-    tags: ['Бесплатно', 'Есть триал'],
-  },
-  {
-    id: 'vidnoz',
-    name: 'Vidnoz',
-    category: 'Видео',
-    description: 'Простой генератор видео. Выбираешь аватар, пишешь текст — получаешь готовый ролик для презентации или соцсетей.',
-    link: 'https://www.vidnoz.com/',
-    dateAdded: '2025-09-07',
-    popularity: 380,
-    rating: 4.3,
-    tags: ['Бесплатно'],
+    tags: ['Есть триал'],
   },
   {
     id: 'getgenie',
@@ -4937,18 +4893,7 @@ export const allServices: AIService[] = [
     dateAdded: '2025-09-07',
     popularity: 500,
     rating: 4.6,
-    tags: ['Бесплатно', 'Есть триал'],
-  },
-  {
-    id: 'nvidia-ai',
-    name: 'NVIDIA AI',
-    category: 'Код',
-    description: 'Короче, это главный поставщик "мозгов" для всего AI-движа. Они делают самые мощные видюхи (GPU), на которых обучаются и работают все топовые нейронки. Для разрабов — это целая экосистема софтины.',
-    link: 'https://www.nvidia.com/en-us/ai/',
-    dateAdded: '2025-09-08',
-    popularity: 950,
-    rating: 4.9,
-    tags: ['По запросу'],
+    tags: ['Есть триал'],
   },
   {
     id: 'dall-e-3',
@@ -4960,6 +4905,61 @@ export const allServices: AIService[] = [
     popularity: 900,
     rating: 4.7,
     tags: ['Есть триал'],
+  },
+  {
+    id: 'cohesive',
+    name: 'Cohesive',
+    category: 'Маркетинг',
+    description: 'Короче, это универсальный солдат для контент-маркетолога. Эта штука поможет и текст для блога написать, и картинку к нему нарисовать, и даже видео собрать. Все в одном месте, чтобы ты не скакал по разным сервисам.',
+    link: 'https://cohesive.so',
+    dateAdded: '2025-09-08',
+    popularity: 350,
+    rating: 4.5,
+    tags: ['Есть триал'],
+  },
+  {
+    id: 'zapier',
+    name: 'Zapier',
+    category: 'Автоматизация',
+    description: 'Эта платформа — просто клей для интернета. Она умеет связывать тысячи разных приложений (типа Gmail, Slack, Trello) и автоматизировать рутину. А теперь у них есть AI-агенты, которые могут выполнять сложные задачи по твоему запросу.',
+    link: 'https://zapier.com/agents',
+    dateAdded: '2025-09-08',
+    popularity: 600,
+    rating: 4.8,
+    tags: ['Есть триал'],
+  },
+  {
+    id: 'voicemod',
+    name: 'Voicemod',
+    category: 'Аудио',
+    description: 'Хочешь звучать как робот или демон во время стрима или онлайн-игры? Эта нейронка меняет твой голос в реальном времени. Куча готовых пресетов и возможность создавать свои. Фан обеспечен!',
+    link: 'https://www.voicemod.net',
+    dateAdded: '2025-09-08',
+    popularity: 500,
+    rating: 4.6,
+    tags: ['Бесплатно'],
+  },
+  {
+    id: 'narrato',
+    name: 'Narrato',
+    category: 'Текст',
+    description: 'Платформа для тех, кто серьезно занимается контентом. Она помогает не только писать статьи с помощью AI, но и управлять всем процессом: от планирования и заказа текстов до публикации. Для команд — самое то.',
+    link: 'https://narrato.io',
+    dateAdded: '2025-09-08',
+    popularity: 280,
+    rating: 4.4,
+    tags: ['Есть триал'],
+  },
+  {
+    id: 'vidnoz',
+    name: 'Vidnoz',
+    category: 'Видео',
+    description: 'Хочешь сделать обучающий ролик, но стесняешься камеры? Не проблема. Этот сервис позволяет создавать видео с говорящими AI-аватарами. Выбираешь ведущего, пишешь текст — и готово. Есть бесплатный тариф.',
+    link: 'https://www.vidnoz.com/',
+    dateAdded: '2025-09-08',
+    popularity: 420,
+    rating: 4.4,
+    tags: ['Бесплатно'],
   }
 ];
 
