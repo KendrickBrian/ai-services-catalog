@@ -44,20 +44,25 @@ export default function Home({ searchParams }: PageProps) {
     );
   }
 
-  // Apply sorting
+  // Apply sorting with defense against invalid dates
   switch (sort) {
     case 'popular':
       filteredServices.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
       break;
     case 'newest':
-      filteredServices.sort(
-        (a, b) =>
-          new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime()
+      filteredServices.sort((a, b) => {
+          const dateA = new Date(a.dateAdded).getTime();
+          const dateB = new Date(b.dateAdded).getTime();
+          // Treat invalid dates as oldest
+          if (isNaN(dateA)) return 1;
+          if (isNaN(dateB)) return -1;
+          return dateB - dateA;
+        }
       );
       break;
   }
   
-  // Prepend the pinned SYNTX service if conditions are met (first page, no search, any category except 'special')
+  // Prepend the pinned SYNTX service if conditions are met (first page, no search, any category)
   if (syntxService && page === 1 && !search) {
       // Ensure we don't add it if it's already there (e.g. from a filtered list)
       const isSyntxPresent = filteredServices.some(s => s.id === syntxService.id);
