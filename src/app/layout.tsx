@@ -24,8 +24,26 @@ const fontJetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Бесплатные ИИ',
-  description: 'Лучшие нейросети 2025',
+  title: 'Бесплатные ИИ - Каталог лучших нейросетей 2025',
+  description:
+    'Откройте для себя лучшие бесплатные нейросети и AI-сервисы в 2025 году. Удобный каталог с поиском, фильтрами и обзорами для текста, изображений, кода и многого другого.',
+  keywords: [
+    'нейросети',
+    'искусственный интеллект',
+    'ai',
+    'бесплатные нейросети',
+    'каталог ai',
+    'gpt-5',
+    'midjourney',
+    'dall-e 3',
+    'sora',
+    'syntx',
+    'ии сервисы',
+  ],
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
