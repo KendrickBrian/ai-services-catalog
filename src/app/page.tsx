@@ -59,7 +59,7 @@ export default function Home({ searchParams }: PageProps) {
             Бесплатные ИИ
           </h1>
           <p className="text-sm text-muted-foreground">
-            Лучшие нейросети 2024
+            Лучшие нейросети 2025
           </p>
         </div>
         <Button variant="ghost" size="icon">

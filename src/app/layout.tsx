@@ -4,7 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
   title: 'Бесплатные ИИ',
-  description: 'Лучшие нейросети 2024',
+  description: 'Лучшие нейросети 2025',
 };
 
 export default function RootLayout({
