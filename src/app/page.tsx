@@ -6,13 +6,8 @@ import { Package } from 'lucide-react';
 import { SearchInput } from '@/components/search-input';
 import { PaginationComponent } from '@/components/pagination';
 import { Skeleton } from '@/components/ui/skeleton';
-
-const AIServiceCard = React.lazy(
-  () => import('@/components/ai-service-card')
-);
-const PaymentServiceCard = React.lazy(
-  () => import('@/components/payment-service-card')
-);
+import AIServiceCard from '@/components/ai-service-card';
+import PaymentServiceCard from '@/components/payment-service-card';
 
 type PageProps = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -58,7 +53,7 @@ export default function Home({ searchParams }: PageProps) {
       break;
   }
 
-  if (syntxService && page === 1 && category === 'all' && !search) {
+  if (syntxService && page === 1 && !search) {
     services.unshift(syntxService);
   }
   
