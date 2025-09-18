@@ -12,6 +12,14 @@ import {
   Sparkles,
   Search,
   LayoutGrid,
+  Bot,
+  Briefcase,
+  GraduationCap,
+  HeartPulse,
+  Cuboid,
+  Zap,
+  TrendingUp,
+  CreditCard,
 } from 'lucide-react';
 
 type ControlsProps = {
@@ -22,11 +30,19 @@ const categoryIcons: { [key: string]: React.ReactNode } = {
   all: <LayoutGrid />,
   Текст: <FileText />,
   Изображения: <ImageIcon />,
+  Код: <Code />,
   Видео: <Video />,
   Аудио: <Music />,
-  Код: <Code />,
+  Маркетинг: <TrendingUp />,
+  Специальное: <CreditCard />,
   Дизайн: <Sparkles />,
   Поиск: <Search />,
+  Автоматизация: <Bot />,
+  Продуктивность: <Zap />,
+  'Бизнес и финансы': <Briefcase />,
+  Образование: <GraduationCap />,
+  Здоровье: <HeartPulse />,
+  '3D и моделирование': <Cuboid />,
 };
 
 export default function Controls({ categories }: ControlsProps) {
@@ -59,12 +75,18 @@ export default function Controls({ categories }: ControlsProps) {
     'all',
     'Текст',
     'Изображения',
+    'Код',
     'Видео',
     'Аудио',
-    'Код',
     'Дизайн',
-    'Маркетинг',
+    '3D и моделирование',
     'Поиск',
+    'Маркетинг',
+    'Продуктивность',
+    'Автоматизация',
+    'Бизнес и финансы',
+    'Образование',
+    'Здоровье',
   ];
 
   const sortedCategories = [...categories].sort((a, b) => {
