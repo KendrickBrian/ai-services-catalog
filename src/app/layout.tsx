@@ -28,7 +28,7 @@ export default function RootLayout({
         />
         <Script
           src="https://telegram.org/js/telegram-web-app.js"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
         />
       </head>
       <body className="font-body antialiased bg-background text-foreground bg-gradient-to-br from-bg-start to-bg-end min-h-screen">
