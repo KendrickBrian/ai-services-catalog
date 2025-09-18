@@ -11,7 +11,7 @@ export type AIService = {
     | 'Специальное'
     | 'Дизайн'
     | 'Поиск';
-  secondaryCategory?: 'Код' | 'Изображения' | 'Поиск';
+  secondaryCategory?: 'Код' | 'Изображения' | 'Поиск' | 'Текст' | 'Видео' | 'Аудио';
   description: string;
   link: string;
   dateAdded: string; // YYYY-MM-DD
@@ -27,7 +27,7 @@ export const allServices: AIService[] = [
   {
     id: 'syntx-ai-bot',
     name: 'SYNTX AI Bot',
-    category: 'Текст', // "Все категории" is not a category, so let's pick a primary one.
+    category: 'Текст',
     description:
       'Универсальный AI-бот с доступом ко всем топовым нейросетям',
     link: 'https://t.me/syntxaibot?start=aff_179606810',
@@ -146,6 +146,7 @@ export const allServices: AIService[] = [
     id: 'ideogram-ai',
     name: 'Ideogram AI',
     category: 'Изображения',
+    secondaryCategory: 'Текст',
     description: 'Генерация изображений с текстом',
     link: 'https://ideogram.ai/',
     dateAdded: '2023-12-01',
@@ -201,6 +202,7 @@ export const allServices: AIService[] = [
     id: 'descript',
     name: 'Descript',
     category: 'Аудио',
+    secondaryCategory: 'Видео',
     description: 'Редактирование аудио и видео как текстового документа.',
     link: 'https://www.descript.com/',
     dateAdded: '2023-11-05',
@@ -257,6 +259,7 @@ export const allServices: AIService[] = [
     id: 'adcreative-ai',
     name: 'AdCreative.ai',
     category: 'Маркетинг',
+    secondaryCategory: 'Изображения',
     description: 'Создание рекламных креативов для соцсетей.',
     link: 'https://www.adcreative.ai/',
     dateAdded: '2024-01-25',
@@ -267,7 +270,8 @@ export const allServices: AIService[] = [
   {
     id: 'jasper-ai',
     name: 'Jasper AI',
-    category: 'Маркетинг',
+    category: 'Текст',
+    secondaryCategory: 'Маркетинг',
     description: 'Написание маркетинговых текстов, постов для блогов.',
     link: 'https://www.jasper.ai/',
     dateAdded: '2023-07-20',
@@ -278,7 +282,8 @@ export const allServices: AIService[] = [
   {
     id: 'copy-ai',
     name: 'Copy.ai',
-    category: 'Маркетинг',
+    category: 'Текст',
+    secondaryCategory: 'Маркетинг',
     description: 'Генерация текстов для рекламы, сайтов и соцсетей.',
     link: 'https://www.copy.ai/',
     dateAdded: '2023-08-01',
@@ -395,6 +400,7 @@ export const allServices: AIService[] = [
     id: 'lexica',
     name: 'Lexica',
     category: 'Изображения',
+    secondaryCategory: 'Поиск',
     description: 'Поисковик по AI-изображениям и генератор',
     link: 'https://lexica.art/',
     dateAdded: '2023-12-01',
@@ -428,6 +434,7 @@ export const allServices: AIService[] = [
     id: 'pictory',
     name: 'Pictory',
     category: 'Видео',
+    secondaryCategory: 'Текст',
     description: 'Создание видео из текста',
     link: 'https://pictory.ai/',
     dateAdded: '2024-02-01',
@@ -439,6 +446,7 @@ export const allServices: AIService[] = [
     id: 'invideo',
     name: 'InVideo',
     category: 'Видео',
+    secondaryCategory: 'Текст',
     description: 'Создание видео из текста с готовыми шаблонами',
     link: 'https://invideo.io/',
     dateAdded: '2024-02-01',
@@ -537,7 +545,8 @@ export const allServices: AIService[] = [
   {
     id: 'writesonic',
     name: 'Writesonic',
-    category: 'Маркетинг',
+    category: 'Текст',
+    secondaryCategory: 'Маркетинг',
     description: 'Создание SEO-оптимизированного контента',
     link: 'https://writesonic.com/',
     dateAdded: '2023-11-01',
@@ -571,6 +580,7 @@ export const allServices: AIService[] = [
     id: 'microsoft-designer',
     name: 'Microsoft Designer',
     category: 'Дизайн',
+    secondaryCategory: 'Изображения',
     description: 'Создание дизайнов и изображений',
     link: 'https://designer.microsoft.com/',
     dateAdded: '2024-02-01',
@@ -703,6 +713,7 @@ export const allServices: AIService[] = [
     id: 'beautiful-ai',
     name: 'Beautiful.ai',
     category: 'Дизайн',
+    secondaryCategory: 'Текст',
     description: 'Создание красивых презентаций за минуты',
     link: 'https://www.beautiful.ai/',
     dateAdded: '2023-12-01',
@@ -846,6 +857,7 @@ export const allServices: AIService[] = [
     id: 'surfer-seo',
     name: 'Surfer SEO',
     category: 'Маркетинг',
+    secondaryCategory: 'Текст',
     description: 'Инструмент для SEO-оптимизации контента',
     link: 'https://surferseo.com/',
     dateAdded: '2023-09-05',
@@ -857,6 +869,7 @@ export const allServices: AIService[] = [
     id: 'closerscopy',
     name: 'ClosersCopy',
     category: 'Маркетинг',
+    secondaryCategory: 'Текст',
     description: 'AI-копирайтинг для продаж',
     link: 'https://www.closerscopy.com/',
     dateAdded: '2023-08-10',
@@ -956,6 +969,7 @@ export const allServices: AIService[] = [
     id: 'lumen5',
     name: 'Lumen5',
     category: 'Видео',
+    secondaryCategory: 'Текст',
     description: 'Превращает блоги в видео за минуты',
     link: 'https://lumen5.com/',
     dateAdded: '2023-08-12',
@@ -1022,6 +1036,7 @@ export const allServices: AIService[] = [
     id: 'frase-io',
     name: 'Frase.io',
     category: 'Маркетинг',
+    secondaryCategory: 'Текст',
     description: 'Помогает исследовать, писать и оптимизировать SEO-контент',
     link: 'https://www.frase.io/',
     dateAdded: '2023-08-18',
@@ -1033,6 +1048,7 @@ export const allServices: AIService[] = [
     id: 'anyword',
     name: 'Anyword',
     category: 'Маркетинг',
+    secondaryCategory: 'Текст',
     description: 'AI-копирайтинг, который работает на результат',
     link: 'https://anyword.com/',
     dateAdded: '2023-07-25',
@@ -1077,6 +1093,7 @@ export const allServices: AIService[] = [
     id: 'caption-ai',
     name: 'Captions',
     category: 'Видео',
+    secondaryCategory: 'Аудио',
     description: 'Автоматическое добавление субтитров к видео',
     link: 'https://www.captions.ai/',
     dateAdded: '2023-10-18',
@@ -1121,6 +1138,7 @@ export const allServices: AIService[] = [
     id: 'topaz-labs',
     name: 'Topaz Labs',
     category: 'Изображения',
+    secondaryCategory: 'Видео',
     description: 'Улучшение качества фото и видео',
     link: 'https://www.topazlabs.com/',
     dateAdded: '2023-06-01',
@@ -1132,6 +1150,7 @@ export const allServices: AIService[] = [
     id: 'genmo',
     name: 'Genmo',
     category: 'Видео',
+    secondaryCategory: 'Изображения',
     description: 'Создание видео из текста и изображений',
     link: 'https://www.genmo.ai/',
     dateAdded: '2024-03-15',
@@ -1165,6 +1184,7 @@ export const allServices: AIService[] = [
     id: 'content-at-scale',
     name: 'Content at Scale',
     category: 'Маркетинг',
+    secondaryCategory: 'Текст',
     description: 'Создание качественного контента в больших объемах',
     link: 'https://contentatscale.ai/',
     dateAdded: '2023-10-10',
