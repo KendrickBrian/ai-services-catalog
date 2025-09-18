@@ -430,7 +430,7 @@ export const allServices: AIService[] = [
     name: 'Виртуальная карта для оплаты',
     category: 'Специальное',
     description: 'Твой бро в мире санкций. Помогает оплачивать Midjourney, ChatGPT Plus и другие забугорные сервисы из России. Просто и надежно.',
-    link: 'https.t.me/WantToPayBot?start=w17851188--KOIV0',
+    link: 'https://t.me/WantToPayBot?start=w17851188--KOIV0',
     dateAdded: '2024-01-01',
     popularity: 95, 
     rating: 5.0,
@@ -4878,4 +4878,5 @@ export const allServices: AIService[] = [
 ];
 
     
+
 
