@@ -3,9 +3,8 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Free AI Universe',
-  description:
-    'Ищем и находим САМЫЕ НОВЫЕ и ЛУЧШИЕ бесплатные нейросети, абузим триалы и получаем халявний доступ',
+  title: 'Бесплатные ИИ',
+  description: 'Лучшие нейросети 2024',
 };
 
 export default function RootLayout({

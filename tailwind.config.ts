@@ -17,8 +17,8 @@ export default {
     },
     extend: {
       colors: {
-        'bg-start': '#0A0E27',
-        'bg-end': '#161B3D',
+        'bg-start': '#0F172A', // slate-900
+        'bg-end': '#1E293B', // slate-800
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -86,5 +86,19 @@ export default {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    function ({ addUtilities }: { addUtilities: any }) {
+      addUtilities({
+        '.scrollbar-hide': {
+          /* Firefox */
+          'scrollbar-width': 'none',
+          /* Safari and Chrome */
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+        },
+      });
+    },
+  ],
 } satisfies Config;

@@ -2,27 +2,31 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback } from 'react';
-import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Search, SlidersHorizontal } from 'lucide-react';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from './ui/dropdown-menu';
-import { Button } from './ui/button';
+  FileText,
+  ImageIcon,
+  Video,
+  Music,
+  Code,
+  Sparkles,
+  Search,
+  LayoutGrid,
+} from 'lucide-react';
 
 type ControlsProps = {
   categories: string[];
+};
+
+const categoryIcons: { [key: string]: React.ReactNode } = {
+  all: <LayoutGrid />,
+  Текст: <FileText />,
+  Изображения: <ImageIcon />,
+  Видео: <Video />,
+  Аудио: <Music />,
+  Код: <Code />,
+  Дизайн: <Sparkles />,
+  Поиск: <Search />,
 };
 
 export default function Controls({ categories }: ControlsProps) {
@@ -49,82 +53,45 @@ export default function Controls({ categories }: ControlsProps) {
     });
   };
 
-  const handleSortChange = (value: string) => {
-    router.push(pathname + '?' + createQueryString('sort', value), {
-      scroll: false,
-    });
-  };
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    router.push(pathname + '?' + createQueryString('search', e.target.value), {
-      scroll: false,
-    });
-  };
-
   const currentCategory = searchParams.get('category') || 'all';
-  const currentSort = searchParams.get('sort') || 'featured';
-  const currentSearch = searchParams.get('search') || '';
+
+  const categoryOrder = [
+    'all',
+    'Текст',
+    'Изображения',
+    'Видео',
+    'Аудио',
+    'Код',
+  ];
+
+  const sortedCategories = [...categories].sort((a, b) => {
+    const aIndex = categoryOrder.indexOf(a);
+    const bIndex = categoryOrder.indexOf(b);
+    if (aIndex === -1 && bIndex === -1) return a.localeCompare(b);
+    if (aIndex === -1) return 1;
+    if (bIndex === -1) return -1;
+    return aIndex - bIndex;
+  });
 
   return (
-    <div className="mb-8 space-y-4">
-      <div className="flex flex-col md:flex-row gap-4">
-        <div className="relative flex-grow">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-          <Input
-            type="search"
-            placeholder="Поиск по названию..."
-            className="pl-10 h-12 text-base"
-            onChange={handleSearchChange}
-            defaultValue={currentSearch}
-          />
-        </div>
-        <div className="md:hidden">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="w-full justify-between h-12">
-                {currentCategory === 'all' ? 'Все категории' : currentCategory}
-                <SlidersHorizontal className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
-              <DropdownMenuRadioGroup
-                value={currentCategory}
-                onValueChange={handleCategoryChange}
-              >
-                {categories.map((cat) => (
-                  <DropdownMenuRadioItem key={cat} value={cat}>
-                    {cat === 'all' ? 'Все' : cat}
-                  </DropdownMenuRadioItem>
-                ))}
-              </DropdownMenuRadioGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-
-        <Select onValueChange={handleSortChange} defaultValue={currentSort}>
-          <SelectTrigger className="w-full md:w-[180px] h-12 text-base">
-            <SelectValue placeholder="Сортировка" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="featured">Популярное</SelectItem>
-            <SelectItem value="newest">Сначала новые</SelectItem>
-          </SelectContent>
-        </Select>
+    <div className="mb-8">
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide">
+        {sortedCategories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => handleCategoryChange(cat)}
+            className={cn(
+              'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors shrink-0',
+              currentCategory === cat
+                ? 'bg-primary/20 text-white'
+                : 'bg-card/50 text-muted-foreground hover:bg-card/90 hover:text-white'
+            )}
+          >
+            {categoryIcons[cat] || categoryIcons['all']}
+            <span className="capitalize">{cat === 'all' ? 'Все категории' : cat}</span>
+          </button>
+        ))}
       </div>
-
-      <Tabs
-        defaultValue={currentCategory}
-        onValueChange={handleCategoryChange}
-        className="hidden md:block"
-      >
-        <TabsList className="grid w-full grid-cols-8">
-          {categories.map((cat) => (
-            <TabsTrigger key={cat} value={cat} className="capitalize">
-              {cat === 'all' ? 'Все' : cat}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </Tabs>
     </div>
   );
 }

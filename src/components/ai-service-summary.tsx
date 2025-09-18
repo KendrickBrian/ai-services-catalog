@@ -1,18 +1,8 @@
-import { summarizeAIService } from '@/ai/flows/summarize-ai-services';
+// This component is no longer needed with the new design.
+// The description is now directly displayed in the card.
+// To keep the app compiling, we'll return null.
+// This file can be safely deleted in a future step.
 
-type AIServiceSummaryProps = {
-  description: string;
-};
-
-export default async function AIServiceSummary({
-  description,
-}: AIServiceSummaryProps) {
-  try {
-    const { summary } = await summarizeAIService({ description });
-    return <p>{summary}</p>;
-  } catch (error) {
-    console.error('Failed to get summary:', error);
-    // Fallback to showing a truncated version of the full description
-    return <p>{description.slice(0, 100)}...</p>;
-  }
+export default function AIServiceSummary() {
+  return null;
 }

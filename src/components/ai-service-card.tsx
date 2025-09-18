@@ -1,105 +1,138 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { Suspense } from 'react';
-import { ArrowUpRight, Crown, CreditCard } from 'lucide-react';
+import { Star, Flame, CheckCircle, Users } from 'lucide-react';
 
 import { AIService } from '@/data/ai-services';
-import AIServiceSummary from './ai-service-summary';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Skeleton } from './ui/skeleton';
+import { cn } from '@/lib/utils';
 
 type AIServiceCardProps = {
   service: AIService;
 };
 
-export default function AIServiceCard({ service }: AIServiceCardProps) {
-  const placeholder = PlaceHolderImages.find((p) => p.id === service.image);
+const iconMap: { [key: string]: React.ReactNode } = {
+  Текст: (
+    <span role="img" aria-label="text">
+      📝
+    </span>
+  ),
+  Изображения: (
+    <span role="img" aria-label="images">
+      🖼️
+    </span>
+  ),
+  Код: (
+    <span role="img" aria-label="code">
+      💻
+    </span>
+  ),
+  Видео: (
+    <span role="img" aria-label="video">
+      🎬
+    </span>
+  ),
+  Аудио: (
+    <span role="img" aria-label="audio">
+      🎵
+    </span>
+  ),
+  Маркетинг: (
+    <span role="img" aria-label="marketing">
+      📈
+    </span>
+  ),
+};
 
-  if (service.isWantToPay) {
-    return (
-      <Link
-        href={service.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group relative block"
-      >
-        <div className="relative w-full h-[420px] bg-gradient-to-br from-green-400 to-blue-500 rounded-2xl overflow-hidden p-6 flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-green-500/30">
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <Badge variant="secondary" className="bg-white/20 text-white">
-                {service.category}
-              </Badge>
-              <CreditCard className="w-8 h-8 text-white/80" />
-            </div>
-            <h3 className="font-headline text-3xl font-bold text-white">
-              {service.name}
-            </h3>
+export default function AIServiceCard({ service }: AIServiceCardProps) {
+  const getTags = () => {
+    const tags = [];
+    if (service.tags) {
+      if (service.tags.includes('Бесплатно')) {
+        tags.push(
+          <div
+            key="free"
+            className="flex items-center gap-1 text-green-400 text-xs"
+          >
+            <CheckCircle className="w-3 h-3" />
+            Бесплатно
           </div>
-          <div className="text-white/90">
-            <p className="font-light text-lg">{service.description}</p>
+        );
+      }
+      if (service.tags.includes('Есть триал')) {
+        tags.push(
+          <div
+            key="trial"
+            className="flex items-center gap-1 text-blue-400 text-xs"
+          >
+            <Flame className="w-3 h-3" />
+            Есть триал
           </div>
-          <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
-            <ArrowUpRight className="w-8 h-8 text-white" />
-          </div>
-        </div>
-      </Link>
-    );
-  }
+        );
+      }
+    }
+    return tags;
+  };
 
   return (
-    <div className="group relative w-full h-[420px] bg-card/50 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden p-4 flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20">
+    <div
+      className={cn(
+        'group relative w-full bg-card/50 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20',
+        service.isFeatured && 'border-amber-400/50'
+      )}
+    >
       {service.isFeatured && (
-        <div className="absolute top-2 right-2 z-10">
+        <div className="absolute -top-3 left-4 z-10">
           <Badge
             variant="default"
-            className="bg-gradient-to-r from-amber-400 to-orange-500 text-white border-none"
+            className="bg-amber-400 text-black border-none text-xs font-bold"
           >
-            <Crown className="w-3 h-3 mr-1" />
-            Топ
+            <Star className="w-3 h-3 mr-1" />
+            ТОП
           </Badge>
         </div>
       )}
-      <div className="relative w-full h-[160px] rounded-lg overflow-hidden mb-3">
-        {placeholder && (
-          <Image
-            src={placeholder.imageUrl}
-            alt={service.name}
-            width={320}
-            height={200}
-            data-ai-hint={placeholder.imageHint}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          />
+
+      <div className="flex justify-between items-start mb-3 pt-2">
+        <h3 className="font-headline text-lg font-bold text-white truncate pr-4">
+          {service.name}
+        </h3>
+        {service.rating && (
+          <div className="flex items-center gap-1 text-sm font-bold text-amber-400 shrink-0">
+            <Star className="w-4 h-4 fill-current" />
+            <span>{service.rating.toFixed(1)}</span>
+          </div>
         )}
       </div>
 
-      <div className="flex flex-col flex-grow">
-        <h3 className="font-headline text-xl font-bold truncate mb-1">
-          {service.name}
-        </h3>
-        <div className="flex-grow text-sm text-muted-foreground mb-3">
-          <Suspense
-            fallback={<Skeleton className="h-10 w-full rounded-md" />}
-          >
-            <AIServiceSummary description={service.description} />
-          </Suspense>
-        </div>
-
-        <div className="flex flex-wrap gap-1 mb-3">
-          {service.tags?.map((tag) => (
-            <Badge key={tag} variant="secondary">
-              {tag}
-            </Badge>
-          ))}
-        </div>
+      <div className="flex items-center gap-2 mb-3">
+        {iconMap[service.category]}
+        <span className="text-xs text-muted-foreground">{service.category}</span>
+        {service.secondaryCategory && (
+          <>
+            <span className="text-xs text-muted-foreground">•</span>
+            {iconMap[service.secondaryCategory]}
+            <span className="text-xs text-muted-foreground">{service.secondaryCategory}</span>
+          </>
+        )}
       </div>
 
-      <Button asChild size="sm" className="w-full mt-auto">
-        <Link href={service.link} target="_blank" rel="noopener noreferrer">
-          Попробовать <ArrowUpRight className="ml-2 h-4 w-4" />
-        </Link>
-      </Button>
+      <p className="text-sm text-muted-foreground mb-4 flex-grow min-h-[40px]">
+        {service.description}
+      </p>
+
+      <div className="flex items-center gap-3 mb-4">{getTags()}</div>
+
+      <div className="flex justify-between items-center mt-auto">
+        <div className="flex items-center gap-1.5 text-muted-foreground text-sm">
+          <Users className="w-4 h-4" />
+          <span>{service.popularity}K</span>
+        </div>
+        <Button asChild size="sm" className="bg-primary/20 hover:bg-primary/40 border border-primary/50 text-white rounded-lg">
+          <Link href={service.link} target="_blank" rel="noopener noreferrer">
+            Попробовать
+          </Link>
+        </Button>
+      </div>
     </div>
   );
 }
