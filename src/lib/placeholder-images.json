@@ -1,3 +1,76 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "1",
+      "description": "Abstract neural network visualization",
+      "imageUrl": "https://picsum.photos/seed/ai1/320/200",
+      "imageHint": "abstract technology"
+    },
+    {
+      "id": "2",
+      "description": "Digital art created by an AI",
+      "imageUrl": "https://picsum.photos/seed/ai2/320/200",
+      "imageHint": "digital art"
+    },
+    {
+      "id": "3",
+      "description": "Lines of code on a screen",
+      "imageUrl": "https://picsum.photos/seed/ai3/320/200",
+      "imageHint": "code programming"
+    },
+    {
+      "id": "4",
+      "description": "Futuristic video editing interface",
+      "imageUrl": "https://picsum.photos/seed/ai4/320/200",
+      "imageHint": "futuristic interface"
+    },
+    {
+      "id": "5",
+      "description": "Soundwave visualization",
+      "imageUrl": "https://picsum.photos/seed/ai5/320/200",
+      "imageHint": "sound wave"
+    },
+    {
+      "id": "6",
+      "description": "Marketing analytics dashboard",
+      "imageUrl": "https://picsum.photos/seed/ai6/320/200",
+      "imageHint": "data analytics"
+    },
+    {
+      "id": "7",
+      "description": "Robot hand and human hand",
+      "imageUrl": "https://picsum.photos/seed/ai7/320/200",
+      "imageHint": "robot human"
+    },
+    {
+      "id": "8",
+      "description": "Abstract data points",
+      "imageUrl": "https://picsum.photos/seed/ai8/320/200",
+      "imageHint": "abstract data"
+    },
+    {
+      "id": "9",
+      "description": "Glowing brain illustration",
+      "imageUrl": "https://picsum.photos/seed/ai9/320/200",
+      "imageHint": "brain network"
+    },
+    {
+      "id": "10",
+      "description": "Virtual reality landscape",
+      "imageUrl": "https://picsum.photos/seed/ai10/320/200",
+      "imageHint": "virtual reality"
+    },
+    {
+      "id": "11",
+      "description": "Credit card and technology background",
+      "imageUrl": "https://picsum.photos/seed/payment/320/200",
+      "imageHint": "payment technology"
+    },
+    {
+      "id": "12",
+      "description": "Chat bot interface",
+      "imageUrl": "https://picsum.photos/seed/chatbot/320/200",
+      "imageHint": "chat bot"
+    }
+  ]
 }
