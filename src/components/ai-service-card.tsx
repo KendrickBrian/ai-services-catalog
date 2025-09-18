@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Star, Flame, CheckCircle, Users } from 'lucide-react';
 
@@ -5,6 +7,7 @@ import { AIService } from '@/data/ai-services';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
+import { handleCardClick } from '@/app/actions/telegram-actions';
 
 type AIServiceCardProps = {
   service: AIService;
@@ -73,65 +76,91 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
     return tags;
   };
 
+  const onCardClick = () => {
+    handleCardClick({
+      serviceName: service.name,
+      serviceLink: service.link,
+    });
+  };
+
   return (
     <div
+      onClick={onCardClick}
       className={cn(
-        'group relative w-full bg-card/50 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20',
+        'group relative w-full bg-card/50 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer',
         service.isFeatured && 'border-amber-400/50'
       )}
     >
-      {service.isFeatured && (
-        <div className="absolute -top-3 left-4 z-10">
-          <Badge
-            variant="default"
-            className="bg-amber-400 text-black border-none text-xs font-bold"
-          >
-            <Star className="w-3 h-3 mr-1" />
-            ТОП
-          </Badge>
-        </div>
-      )}
-
-      <div className="flex justify-between items-start mb-3 pt-2">
-        <h3 className="font-headline text-lg font-bold text-white truncate pr-4">
-          {service.name}
-        </h3>
-        {service.rating && (
-          <div className="flex items-center gap-1 text-sm font-bold text-amber-400 shrink-0">
-            <Star className="w-4 h-4 fill-current" />
-            <span>{service.rating.toFixed(1)}</span>
+      <Link
+        href={service.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute inset-0 z-0"
+        aria-hidden="true"
+        tabIndex={-1}
+      />
+      <div className="relative z-10 flex flex-col h-full">
+        {service.isFeatured && (
+          <div className="absolute -top-3 left-4 z-10">
+            <Badge
+              variant="default"
+              className="bg-amber-400 text-black border-none text-xs font-bold"
+            >
+              <Star className="w-3 h-3 mr-1" />
+              ТОП
+            </Badge>
           </div>
         )}
-      </div>
 
-      <div className="flex items-center gap-2 mb-3">
-        {iconMap[service.category]}
-        <span className="text-xs text-muted-foreground">{service.category}</span>
-        {service.secondaryCategory && (
-          <>
-            <span className="text-xs text-muted-foreground">•</span>
-            {iconMap[service.secondaryCategory]}
-            <span className="text-xs text-muted-foreground">{service.secondaryCategory}</span>
-          </>
-        )}
-      </div>
-
-      <p className="text-sm text-muted-foreground mb-4 flex-grow min-h-[40px]">
-        {service.description}
-      </p>
-
-      <div className="flex items-center gap-3 mb-4">{getTags()}</div>
-
-      <div className="flex justify-between items-center mt-auto">
-        <div className="flex items-center gap-1.5 text-muted-foreground text-sm">
-          <Users className="w-4 h-4" />
-          <span>{service.popularity}K</span>
+        <div className="flex justify-between items-start mb-3 pt-2">
+          <h3 className="font-headline text-lg font-bold text-white truncate pr-4">
+            {service.name}
+          </h3>
+          {service.rating && (
+            <div className="flex items-center gap-1 text-sm font-bold text-amber-400 shrink-0">
+              <Star className="w-4 h-4 fill-current" />
+              <span>{service.rating.toFixed(1)}</span>
+            </div>
+          )}
         </div>
-        <Button asChild size="sm" className="bg-primary/20 hover:bg-primary/40 border border-primary/50 text-white rounded-lg">
-          <Link href={service.link} target="_blank" rel="noopener noreferrer">
-            Попробовать
-          </Link>
-        </Button>
+
+        <div className="flex items-center gap-2 mb-3">
+          {iconMap[service.category]}
+          <span className="text-xs text-muted-foreground">
+            {service.category}
+          </span>
+          {service.secondaryCategory && (
+            <>
+              <span className="text-xs text-muted-foreground">•</span>
+              {iconMap[service.secondaryCategory]}
+              <span className="text-xs text-muted-foreground">
+                {service.secondaryCategory}
+              </span>
+            </>
+          )}
+        </div>
+
+        <p className="text-sm text-muted-foreground mb-4 flex-grow min-h-[40px]">
+          {service.description}
+        </p>
+
+        <div className="flex items-center gap-3 mb-4">{getTags()}</div>
+
+        <div className="flex justify-between items-center mt-auto">
+          <div className="flex items-center gap-1.5 text-muted-foreground text-sm">
+            <Users className="w-4 h-4" />
+            <span>{service.popularity}K</span>
+          </div>
+          <Button
+            asChild
+            size="sm"
+            className="bg-primary/20 hover:bg-primary/40 border border-primary/50 text-white rounded-lg z-20 relative"
+          >
+            <Link href={service.link} target="_blank" rel="noopener noreferrer">
+              Попробовать
+            </Link>
+          </Button>
+        </div>
       </div>
     </div>
   );
