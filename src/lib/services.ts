@@ -49,17 +49,16 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
       break;
   }
   
-  // Handle pinning of SYNTX service
-  const syntxService = allServices.find((s) => s.id === 'syntx-ai-bot');
-  if (syntxService && page === 1 && !search) {
-    const syntxInFilteredList = services.find(s => s.id === syntxService.id);
-    if (syntxInFilteredList) {
-        // Remove from current position and add to the top
+  // Handle pinning of SYNTX service in specific categories
+  const categoriesToPinIn = ['Текст', 'Изображения', 'Видео'];
+  if (page === 1 && !search && categoriesToPinIn.includes(category)) {
+    const syntxService = services.find((s) => s.id === 'syntx-ai-bot');
+    if (syntxService) {
         const index = services.findIndex(s => s.id === syntxService.id);
         if (index > -1) {
             services.splice(index, 1);
+            services.unshift(syntxService);
         }
-        services.unshift(syntxService);
     }
   }
   
