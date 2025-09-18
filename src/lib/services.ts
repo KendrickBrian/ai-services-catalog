@@ -20,7 +20,7 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
   // Apply category filter
   if (category !== 'all') {
     services = services.filter((service) => 
-      service.category === category || (service.secondaryCategory && service.secondaryCategory === category)
+      service.category === category || service.secondaryCategory === category
     );
   }
 
@@ -33,32 +33,30 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
     );
   }
 
-  // Apply sorting
-  switch (sort) {
-    case 'popular':
-      services.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
-      break;
-    case 'newest':
-    default:
-      services.sort((a, b) => {
-        const dateA = new Date(a.dateAdded).getTime();
-        const dateB = new Date(b.dateAdded).getTime();
-        if (isNaN(dateA)) return 1;
-        if (isNaN(dateB)) return -1;
-        return dateB - dateA;
-      });
-      break;
-  }
-  
-  // Pin SYNTX service if applicable
-  const categoriesToPinIn = ['Текст', 'Изображения', 'Видео'];
-  if (page === 1 && !search && categoriesToPinIn.includes(category)) {
-    const syntxServiceIndex = services.findIndex((s) => s.id === 'syntx-ai-bot');
-    if (syntxServiceIndex > -1) {
-        const [syntxService] = services.splice(syntxServiceIndex, 1);
-        services.unshift(syntxService);
+  // Define categories where SYNTX should be pinned
+  const categoriesToPinIn = ['all', 'Текст', 'Изображения', 'Видео'];
+  const shouldPin = page === 1 && !search && categoriesToPinIn.includes(category);
+
+  // Apply sorting with safe pinning logic
+  services.sort((a, b) => {
+    // Pinning logic
+    if (shouldPin) {
+      if (a.id === 'syntx-ai-bot' && b.id !== 'syntx-ai-bot') return -1;
+      if (a.id !== 'syntx-ai-bot' && b.id === 'syntx-ai-bot') return 1;
     }
-  }
+
+    // Default sorting logic
+    if (sort === 'popular') {
+      return (b.popularity || 0) - (a.popularity || 0);
+    }
+    
+    // Default to newest
+    const dateA = new Date(a.dateAdded).getTime();
+    const dateB = new Date(b.dateAdded).getTime();
+    if (isNaN(dateA)) return 1;
+    if (isNaN(dateB)) return -1;
+    return dateB - dateA;
+  });
   
   // Paginate the final list
   const totalPages = Math.ceil(services.length / ITEMS_PER_PAGE);
@@ -79,5 +77,3 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
     allCategories,
   };
 }
-
-    
