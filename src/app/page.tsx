@@ -27,39 +27,44 @@ export default function Home({ searchParams }: PageProps) {
   const paymentService = allServices.find((s) => s.isWantToPay);
   const syntxService = allServices.find((s) => s.id === 'syntx-ai-bot');
 
-  let services = allServices.filter(
+  // Start with all services, excluding the special ones we handle separately
+  let filteredServices = allServices.filter(
     (s) => s.id !== paymentService?.id && s.id !== syntxService?.id
   );
 
+  // Apply category filter
   if (category !== 'all') {
-    services = services.filter((service) => service.category === category);
+    filteredServices = filteredServices.filter((service) => service.category === category);
   }
 
+  // Apply search filter
   if (search) {
-    services = services.filter((service) =>
-      service.name.toLowerCase().includes((search as string).toLowerCase())
+    filteredServices = filteredServices.filter((service) =>
+      service.name.toLowerCase().includes(search.toLowerCase())
     );
   }
 
+  // Apply sorting
   switch (sort) {
     case 'popular':
-      services.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
+      filteredServices.sort((a, b) => (b.popularity || 0) - (a.popularity || 0));
       break;
     case 'newest':
-      services.sort(
+      filteredServices.sort(
         (a, b) =>
           new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime()
       );
       break;
   }
-
+  
+  // Prepend the pinned SYNTX service if conditions are met (first page, no search)
   if (syntxService && page === 1 && !search) {
-    services.unshift(syntxService);
+    filteredServices.unshift(syntxService);
   }
   
-  const totalServices = services.length;
+  const totalServices = filteredServices.length;
   const totalPages = Math.ceil(totalServices / ITEMS_PER_PAGE);
-  const paginatedServices = services.slice(
+  const paginatedServices = filteredServices.slice(
     (page - 1) * ITEMS_PER_PAGE,
     page * ITEMS_PER_PAGE
   );
@@ -80,7 +85,7 @@ export default function Home({ searchParams }: PageProps) {
         </p>
       </header>
 
-      {paymentService && page === 1 && (
+      {paymentService && page === 1 && !search && (
         <div className="mb-8">
            <Suspense fallback={<Skeleton className="h-24 w-full rounded-2xl" />}>
             <PaymentServiceCard service={paymentService} />
