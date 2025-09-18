@@ -1,10 +1,10 @@
 import AIServiceCard from '@/components/ai-service-card';
 import Controls from '@/components/controls';
 import { allServices, AIService } from '@/data/ai-services';
-import { Package, CreditCard, Search } from 'lucide-react';
+import { Package, CreditCard } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import { PaymentServiceCard } from '@/components/payment-service-card';
+import { SearchInput } from '@/components/search-input';
 
 type PageProps = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -51,16 +51,13 @@ export default function Home({ searchParams }: PageProps) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <header className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="font-headline text-3xl font-bold tracking-tight text-white">
-            Бесплатные ИИ
-          </h1>
-          <p className="text-sm text-muted-foreground">Лучшие нейросети 2025</p>
-        </div>
-        <Button variant="ghost" size="icon">
-          <Search className="h-5 w-5 text-muted-foreground" />
-        </Button>
+      <header className="text-center mb-8">
+        <h1 className="font-headline text-4xl font-bold tracking-tight text-white">
+          Бесплатные ИИ
+        </h1>
+        <p className="text-lg text-muted-foreground mt-2">
+          Лучшие нейросети 2025
+        </p>
       </header>
 
       {paymentService && (
@@ -70,6 +67,9 @@ export default function Home({ searchParams }: PageProps) {
       )}
 
       <main>
+        <div className="mb-8">
+          <SearchInput />
+        </div>
         <Controls categories={allCategories} />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
