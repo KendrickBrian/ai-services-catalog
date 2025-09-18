@@ -1,8 +1,6 @@
 'use client';
 
-import Link from 'next/link';
 import { Star, Flame, CheckCircle, Users } from 'lucide-react';
-
 import { AIService } from '@/data/ai-services';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
@@ -81,24 +79,21 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
       serviceName: service.name,
       serviceLink: service.link,
     });
+    
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.openLink(service.link);
+    } else {
+      window.open(service.link, '_blank');
+    }
   };
 
   return (
     <div
       onClick={onCardClick}
       className={cn(
-        'group relative w-full bg-card/50 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer',
-        service.isFeatured && 'border-amber-400/50'
+        'group relative w-full bg-card/50 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer'
       )}
     >
-      <Link
-        href={service.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="absolute inset-0 z-0"
-        aria-hidden="true"
-        tabIndex={-1}
-      />
       <div className="relative z-10 flex flex-col h-full">
         {service.isFeatured && (
           <div className="absolute -top-3 left-4 z-10">
@@ -152,13 +147,10 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
             <span>{service.popularity}K</span>
           </div>
           <Button
-            asChild
             size="sm"
             className="bg-primary/20 hover:bg-primary/40 border border-primary/50 text-white rounded-lg z-20 relative"
           >
-            <Link href={service.link} target="_blank" rel="noopener noreferrer">
-              Попробовать
-            </Link>
+            Попробовать
           </Button>
         </div>
       </div>

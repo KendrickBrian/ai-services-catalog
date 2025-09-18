@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { handleCardClick } from '@/app/actions/telegram-actions';
@@ -16,6 +15,12 @@ export function PaymentServiceCard({ service }: PaymentServiceCardProps) {
       serviceName: service.name,
       serviceLink: service.link,
     });
+    
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.openLink(service.link);
+    } else {
+      window.open(service.link, '_blank');
+    }
   };
 
   return (
@@ -33,12 +38,9 @@ export function PaymentServiceCard({ service }: PaymentServiceCardProps) {
         </div>
       </div>
       <Button
-        asChild
         className="bg-green-500 hover:bg-green-600 text-white font-bold shrink-0"
       >
-        <Link href={service.link} target="_blank">
-          Получить
-        </Link>
+        Получить
       </Button>
     </div>
   );

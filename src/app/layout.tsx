@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Бесплатные ИИ',
@@ -24,6 +25,10 @@ export default function RootLayout({
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono&display=swap"
           rel="stylesheet"
+        />
+        <Script
+          src="https://telegram.org/js/telegram-web-app.js"
+          strategy="beforeInteractive"
         />
       </head>
       <body className="font-body antialiased bg-background text-foreground bg-gradient-to-br from-bg-start to-bg-end min-h-screen">
