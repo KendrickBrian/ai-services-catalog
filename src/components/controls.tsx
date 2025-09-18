@@ -62,6 +62,9 @@ export default function Controls({ categories }: ControlsProps) {
     'Видео',
     'Аудио',
     'Код',
+    'Дизайн',
+    'Маркетинг',
+    'Поиск',
   ];
 
   const sortedCategories = [...categories].sort((a, b) => {
