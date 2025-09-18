@@ -10,23 +10,25 @@ type PaymentServiceCardProps = {
 };
 
 export function PaymentServiceCard({ service }: PaymentServiceCardProps) {
-  const onPaymentServiceClick = () => {
+  const onPaymentServiceClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     handleCardClick({
       serviceName: service.name,
       serviceLink: service.link,
     });
     
-    if (window.Telegram && window.Telegram.WebApp) {
+    if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.platform !== 'unknown') {
+      e.preventDefault();
       window.Telegram.WebApp.openLink(service.link);
-    } else {
-      window.open(service.link, '_blank');
     }
   };
 
   return (
-    <div
+    <a
+      href={service.link}
       onClick={onPaymentServiceClick}
-      className="bg-card/50 backdrop-blur-lg border border-green-500/50 rounded-2xl p-4 flex items-center justify-between cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-green-500/20"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-card/50 backdrop-blur-lg border border-green-500/50 rounded-2xl p-4 flex items-center justify-between cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-green-500/20 no-underline text-current"
     >
       <div className="flex items-center gap-4">
         <div className="bg-green-500/20 p-3 rounded-lg">
@@ -39,9 +41,11 @@ export function PaymentServiceCard({ service }: PaymentServiceCardProps) {
       </div>
       <Button
         className="bg-green-500 hover:bg-green-600 text-white font-bold shrink-0"
+        asChild={false}
+        onClick={(e) => e.preventDefault()}
       >
         Получить
       </Button>
-    </div>
+    </a>
   );
 }
