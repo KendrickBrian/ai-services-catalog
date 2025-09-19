@@ -6,6 +6,7 @@ import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
 import React from 'react';
+import type { ClickData } from '@/app/actions/telegram-schemas';
 
 type AIServiceCardProps = {
   service: AIService;
@@ -115,13 +116,31 @@ const getTags = (service: AIService) => {
 
 export default function AIServiceCard({ service }: AIServiceCardProps) {
   const handleAnalytics = () => {
-    if (navigator.sendBeacon) {
-      const data = {
-        serviceName: service.name,
-        serviceLink: service.link,
-      };
-      const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-      navigator.sendBeacon('/api/track', blob);
+    try {
+      if (navigator.sendBeacon) {
+        let clickData: ClickData = {
+          serviceName: service.name,
+          serviceLink: service.link,
+        };
+
+        // @ts-ignore
+        const tg = window.Telegram?.WebApp;
+        if (tg && tg.initDataUnsafe?.user) {
+          const user = tg.initDataUnsafe.user;
+          clickData = {
+            ...clickData,
+            userId: user.id,
+            username: user.username,
+            firstName: user.first_name,
+            lastName: user.last_name,
+          };
+        }
+
+        const blob = new Blob([JSON.stringify(clickData)], { type: 'application/json' });
+        navigator.sendBeacon('/api/track', blob);
+      }
+    } catch (error) {
+       console.error('Error in handleAnalytics:', error);
     }
   };
 

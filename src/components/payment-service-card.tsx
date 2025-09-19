@@ -4,6 +4,7 @@ import { CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { AIService } from '@/data/ai-services';
 import React from 'react';
+import type { ClickData } from '@/app/actions/telegram-schemas';
 
 type PaymentServiceCardProps = {
   service: AIService;
@@ -13,13 +14,31 @@ export default function PaymentServiceCard({
   service,
 }: PaymentServiceCardProps) {
     const handleAnalytics = () => {
-    if (navigator.sendBeacon) {
-      const data = {
-        serviceName: service.name,
-        serviceLink: service.link,
-      };
-      const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-      navigator.sendBeacon('/api/track', blob);
+    try {
+      if (navigator.sendBeacon) {
+        let clickData: ClickData = {
+          serviceName: service.name,
+          serviceLink: service.link,
+        };
+
+        // @ts-ignore
+        const tg = window.Telegram?.WebApp;
+        if (tg && tg.initDataUnsafe?.user) {
+          const user = tg.initDataUnsafe.user;
+          clickData = {
+            ...clickData,
+            userId: user.id,
+            username: user.username,
+            firstName: user.first_name,
+            lastName: user.last_name,
+          };
+        }
+
+        const blob = new Blob([JSON.stringify(clickData)], { type: 'application/json' });
+        navigator.sendBeacon('/api/track', blob);
+      }
+    } catch (error) {
+       console.error('Error in handleAnalytics:', error);
     }
   };
 
