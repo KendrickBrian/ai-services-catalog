@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import type { AIService } from '@/data/ai-services';
 import React from 'react';
 import type { ClickData } from '@/app/actions/telegram-schemas';
+import { useTelegramUser } from '@/app/telegram-user-provider';
 
 type PaymentServiceCardProps = {
   service: AIService;
@@ -13,7 +14,9 @@ type PaymentServiceCardProps = {
 export default function PaymentServiceCard({
   service,
 }: PaymentServiceCardProps) {
-    const handleAnalytics = () => {
+  const user = useTelegramUser();
+
+  const handleAnalytics = () => {
     try {
       if (navigator.sendBeacon) {
         let clickData: ClickData = {
@@ -21,16 +24,13 @@ export default function PaymentServiceCard({
           serviceLink: service.link,
         };
 
-        // @ts-ignore
-        const tg = window.Telegram?.WebApp;
-        if (tg && tg.initDataUnsafe?.user) {
-          const user = tg.initDataUnsafe.user;
-          clickData = {
+        if (user) {
+           clickData = {
             ...clickData,
             userId: user.id,
             username: user.username,
-            firstName: user.first_name,
-            lastName: user.last_name,
+            firstName: user.firstName,
+            lastName: user.lastName,
           };
         }
 

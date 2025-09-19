@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Script from 'next/script';
 import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import { TelegramUserProvider } from './telegram-user-provider';
 
 const fontInter = Inter({
   subsets: ['latin'],
@@ -64,11 +65,13 @@ export default function RootLayout({
       <head>
         <Script
           src="https://telegram.org/js/telegram-web-app.js"
-          strategy="afterInteractive"
+          strategy="beforeInteractive"
         />
       </head>
       <body className="font-body antialiased bg-background text-foreground bg-gradient-to-br from-bg-start to-bg-end min-h-screen">
-        {children}
+        <TelegramUserProvider>
+          {children}
+        </TelegramUserProvider>
         <Toaster />
       </body>
     </html>
