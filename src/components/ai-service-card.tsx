@@ -43,6 +43,46 @@ const iconMap: { [key: string]: React.ReactNode } = {
       📈
     </span>
   ),
+  Дизайн: (
+    <span role="img" aria-label="design">
+      🎨
+    </span>
+  ),
+  Продуктивность: (
+    <span role="img" aria-label="productivity">
+      ⚡️
+    </span>
+  ),
+  Автоматизация: (
+    <span role="img" aria-label="automation">
+      🤖
+    </span>
+  ),
+  'Бизнес и финансы': (
+    <span role="img" aria-label="business">
+      💼
+    </span>
+  ),
+  Образование: (
+    <span role="img" aria-label="education">
+      🎓
+    </span>
+  ),
+  Здоровье: (
+    <span role="img" aria-label="health">
+      ❤️‍🩹
+    </span>
+  ),
+  '3D и моделирование': (
+    <span role="img" aria-label="3d">
+      🧊
+    </span>
+  ),
+  Разное: (
+    <span role="img" aria-label="other">
+      📦
+    </span>
+  ),
 };
 
 const getTags = (service: AIService) => {
@@ -75,9 +115,9 @@ const getTags = (service: AIService) => {
 };
 
 export default function AIServiceCard({ service }: AIServiceCardProps) {
-  const onCardClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const onCardClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    handleCardClick({
+    await handleCardClick({
       serviceName: service.name,
       serviceLink: service.link,
     });
@@ -120,14 +160,14 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
         </div>
 
         <div className="flex items-center gap-2 mb-3">
-          {iconMap[service.category]}
+          {service.category in iconMap && iconMap[service.category]}
           <span className="text-xs text-muted-foreground">
             {service.category}
           </span>
           {service.secondaryCategory && (
             <>
               <span className="text-xs text-muted-foreground">•</span>
-              {iconMap[service.secondaryCategory]}
+              {service.secondaryCategory in iconMap && iconMap[service.secondaryCategory]}
               <span className="text-xs text-muted-foreground">
                 {service.secondaryCategory}
               </span>
