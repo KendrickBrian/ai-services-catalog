@@ -7,7 +7,6 @@ import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
 import React from 'react';
 import type { ClickData } from '@/app/actions/telegram-schemas';
-import { useTelegramUser } from '@/app/telegram-user-provider';
 
 type AIServiceCardProps = {
   service: AIService;
@@ -116,26 +115,14 @@ const getTags = (service: AIService) => {
 };
 
 export default function AIServiceCard({ service }: AIServiceCardProps) {
-  const user = useTelegramUser();
-
-  const trackClick = async () => {
+  const trackClick = () => {
     try {
-      let clickData: ClickData = {
+      const clickData: ClickData = {
         serviceName: service.name,
         serviceLink: service.link,
       };
 
-      if (user) {
-        clickData = {
-          ...clickData,
-          userId: user.id,
-          username: user.username,
-          firstName: user.firstName,
-          lastName: user.lastName,
-        };
-      }
-      
-      await fetch('/api/track', {
+      fetch('/api/track', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -143,28 +130,23 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
         body: JSON.stringify(clickData),
         keepalive: true,
       });
-
     } catch (error) {
-       console.error('Error in trackClick:', error);
+      console.error('Error in trackClick:', error);
     }
   };
 
-  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    try {
-      // 1. Await the click tracking to ensure it completes
-      await trackClick();
-    } catch (error) {
-       // Log tracking error but still attempt to navigate
-      console.error('Error in trackClick, proceeding with navigation:', error);
-    }
+    // Fire and forget tracking
+    trackClick();
 
-    // 2. Open the link using Telegram's method if available
+    // Open link using Telegram's method if available
     try {
       // @ts-ignore
       const tg = window.Telegram?.WebApp;
       if (tg) {
+        // Use a specific method for Telegram links to open them natively
         if (service.link.startsWith('https://t.me/')) {
           tg.openTelegramLink(service.link);
         } else {
@@ -174,10 +156,10 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
         // Fallback for non-Telegram environments
         window.open(service.link, '_blank', 'noopener,noreferrer');
       }
-    } catch(error) {
-        console.error('Error opening link, falling back to window.open:', error);
-        // Fallback for any other error
-        window.open(service.link, '_blank', 'noopener,noreferrer');
+    } catch (error) {
+      console.error('Error opening link, falling back to window.open:', error);
+      // Fallback for any other error
+      window.open(service.link, '_blank', 'noopener,noreferrer');
     }
   };
 

@@ -12,7 +12,7 @@ export async function handleCardClick(data: ClickData) {
     return;
   }
 
-  const { serviceName, serviceLink, userId, username, firstName, lastName } = validatedData.data;
+  const { serviceName, serviceLink } = validatedData.data;
 
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
@@ -22,18 +22,8 @@ export async function handleCardClick(data: ClickData) {
     return;
   }
 
-  let userIdentifier = 'Не определен';
-  if (userId) {
-    const fullName = [firstName, lastName].filter(Boolean).join(' ');
-    const userHandle = username ? `(@${username})` : '';
-    userIdentifier = `${fullName} ${userHandle} (id: ${userId})`.trim();
-  }
-  
-
   const message = `
 *Новый клик!*
-
-👤 *Пользователь:* ${userIdentifier}
 
 Сервис:
 *Название:* ${serviceName}
