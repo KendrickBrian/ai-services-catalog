@@ -115,38 +115,28 @@ const getTags = (service: AIService) => {
 };
 
 export default function AIServiceCard({ service }: AIServiceCardProps) {
-  const onCardClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // We prevent default to handle the click ourselves,
-    // ensuring the beacon is sent before navigating.
+  const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    e.stopPropagation();
 
     const data = {
       serviceName: service.name,
       serviceLink: service.link,
     };
-
-    if (typeof navigator.sendBeacon === 'function') {
-      const formData = new FormData();
-      formData.append('json', JSON.stringify(data));
-      // Use URL relative to the origin. This is crucial for sendBeacon.
-      const actionUrl = new URL(handleCardClick.name, window.location.origin).pathname;
-      navigator.sendBeacon(actionUrl, formData);
-    } else {
-       // Fallback for older browsers
-       handleCardClick(data);
-    }
     
-    // Manually navigate after sending the beacon.
-    // window.open is used to respect the target="_blank" behavior.
+    // Fire and forget
+    handleCardClick(data);
+
     window.open(service.link, '_blank', 'noopener,noreferrer');
   };
+  
+  const onCardClick = () => {
+     window.open(service.link, '_blank', 'noopener,noreferrer');
+  }
 
   return (
-    <a
-      href={service.link}
+    <div
       onClick={onCardClick}
-      target="_blank"
-      rel="noopener noreferrer"
       className={cn(
         'group relative w-full bg-card/50 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer no-underline text-current'
       )}
@@ -204,7 +194,7 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
             <span>{service.popularity}K</span>
           </div>
           <Button
-            asChild
+            onClick={onButtonClick}
             size="sm"
             className="bg-primary/20 hover:bg-primary/40 border border-primary/50 text-white rounded-lg z-20 relative"
           >
@@ -212,6 +202,6 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
           </Button>
         </div>
       </div>
-    </a>
+    </div>
   );
 }
