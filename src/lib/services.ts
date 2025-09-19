@@ -1,3 +1,4 @@
+
 import { allServices, AIService } from '@/data/ai-services';
 
 const ITEMS_PER_PAGE = 24;
@@ -35,13 +36,20 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
   // Apply sorting
   services.sort((a, b) => {
     // Pinning logic for SYNTX
-    const pinCategories = ['Текст', 'Изображения', 'Видео', 'Аудио'];
-    const shouldPin = page === 1 && !search && pinCategories.includes(category);
+    const pinCategories = ['all', 'Изображения', 'Видео', 'Аудио', 'Текст'];
+    const shouldPinA =
+      a.id === 'syntx-ai-bot' &&
+      page === 1 &&
+      !search &&
+      pinCategories.includes(category);
+    const shouldPinB =
+      b.id === 'syntx-ai-bot' &&
+      page === 1 &&
+      !search &&
+      pinCategories.includes(category);
 
-    if (shouldPin) {
-      if (a.id === 'syntx-ai-bot') return -1;
-      if (b.id === 'syntx-ai-bot') return 1;
-    }
+    if (shouldPinA && !shouldPinB) return -1;
+    if (!shouldPinA && shouldPinB) return 1;
 
     // Default sorting logic
     if (sort === 'popular') {
