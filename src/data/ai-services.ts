@@ -36,7 +36,7 @@ export const allServices: AIService[] = [
     name: 'SYNTX AI Bot',
     category: 'Текст',
     description: 'Один Telegram-бот для доступа к ChatGPT, Midjourney, Claude и другим популярным нейросетям.',
-    link: 'tg://resolve?domain=syntxaibot&start=aff_179606810',
+    link: 'https://telegram.me/syntxaibot?start=aff_179606810',
     dateAdded: '2024-05-20',
     popularity: 150,
     rating: 5.0,
@@ -430,7 +430,7 @@ export const allServices: AIService[] = [
     name: 'Виртуальная карта для оплаты',
     category: 'Специальное',
     description: 'Твой бро в мире санкций. Помогает оплачивать Midjourney, ChatGPT Plus и другие забугорные сервисы из России. Просто и надежно.',
-    link: 'tg://resolve?domain=WantToPayBot&start=w17851188--KOIV0',
+    link: 'https://telegram.me/WantToPayBot?start=w17851188--KOIV0',
     dateAdded: '2024-01-01',
     popularity: 95, 
     rating: 5.0,
@@ -1006,7 +1006,7 @@ export const allServices: AIService[] = [
     secondaryCategory: 'Текст',
     description: 'Твой кореш в мире SEO. Анализирует топ выдачи и говорит, что дописать в статью, чтобы она взлетела в поиске. Платный, но есть триал.',
     link: 'https://surferseo.com/',
-    dateAdded: '2023-09-05',
+    dateAdded: '203-09-05',
     popularity: 330,
     rating: 4.7,
     tags: ['Есть триал'],
@@ -4889,4 +4889,5 @@ export const allServices: AIService[] = [
     tags: ['Есть триал']
   }
 ];
+
 
