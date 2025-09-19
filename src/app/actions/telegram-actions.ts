@@ -54,30 +54,6 @@ async function sendMessageToTelegram(data: ClickData) {
 }
 
 
-export async function handleCardClick(data: ClickData | FormData | string) {
-  let clickData: ClickData | null = null;
-
-  if (typeof data === 'string') {
-    try {
-      clickData = JSON.parse(data) as ClickData;
-    } catch (error) {
-      console.error('Error parsing stringified JSON:', error);
-      return;
-    }
-  } else if (data instanceof FormData) {
-    const jsonString = data.get('json') as string;
-    if (jsonString) {
-      try {
-        clickData = JSON.parse(jsonString) as ClickData;
-      } catch (error) {
-        console.error('Error parsing FormData JSON:', error);
-      }
-    }
-  } else {
-    clickData = data;
-  }
-  
-  if (clickData) {
-    await sendMessageToTelegram(clickData);
-  }
+export async function handleCardClick(data: ClickData) {
+  await sendMessageToTelegram(data);
 }
