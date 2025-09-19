@@ -20,7 +20,9 @@ export default async function Home({ searchParams }: PageProps) {
   const search =
     typeof searchParams.search === 'string' ? searchParams.search : '';
   const page =
-    typeof searchParams.page === 'string' ? Number(searchParams.page) : 1;
+    typeof searchParams.page === 'string' && !isNaN(Number(searchParams.page))
+      ? Number(searchParams.page)
+      : 1;
 
   const {
     paginatedServices,
