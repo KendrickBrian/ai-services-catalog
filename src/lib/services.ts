@@ -51,7 +51,9 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
   // Pin SYNTX to the top for specific categories on the first page without search
   const pinCategories = ['all', 'Изображения', 'Видео', 'Аудио', 'Текст'];
   if (syntxService && page === 1 && !search && pinCategories.includes(category)) {
-      services.unshift(syntxService);
+    // Remove if it exists in the list to avoid duplication
+    services = services.filter(s => s.id !== syntxService.id);
+    services.unshift(syntxService);
   }
   
   // Paginate the final list
