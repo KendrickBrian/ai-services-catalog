@@ -115,38 +115,44 @@ const getTags = (service: AIService) => {
 };
 
 export default function AIServiceCard({ service }: AIServiceCardProps) {
-  const trackClick = () => {
+  const trackClick = async () => {
     try {
       const clickData: ClickData = {
         serviceName: service.name,
         serviceLink: service.link,
       };
 
-      fetch('/api/track', {
+      await fetch('/api/track', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(clickData),
-        keepalive: true,
       });
     } catch (error) {
       console.error('Error in trackClick:', error);
     }
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    // Fire and forget tracking
-    trackClick();
+    // 1. Await tracking to complete
+    await trackClick();
 
-    // Open link using Telegram's method if available
+    // 2. Open link using the appropriate method
     try {
       // @ts-ignore
       const tg = window.Telegram?.WebApp;
       if (tg) {
-        tg.openLink(service.link);
+        const isTelegramUrl = service.link.includes('t.me') || service.link.includes('telegram.me');
+        const isMobile = tg.platform === 'ios' || tg.platform === 'android';
+
+        if (isTelegramUrl && isMobile) {
+          tg.openTelegramLink(service.link);
+        } else {
+          tg.openLink(service.link);
+        }
       } else {
         // Fallback for non-Telegram environments
         window.open(service.link, '_blank', 'noopener,noreferrer');
