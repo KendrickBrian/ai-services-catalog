@@ -1,7 +1,6 @@
 
 import React, { Suspense } from 'react';
 import Controls from '@/components/controls';
-import { allServices } from '@/data/ai-services';
 import { Package } from 'lucide-react';
 import { SearchInput } from '@/components/search-input';
 import { PaginationComponent } from '@/components/pagination';
@@ -14,7 +13,7 @@ type PageProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export default function Home({ searchParams }: PageProps) {
+export default async function Home({ searchParams }: PageProps) {
   const category =
     typeof searchParams.category === 'string' ? searchParams.category : 'all';
   const sort = typeof searchParams.sort === 'string' ? searchParams.sort : 'newest';
