@@ -6,7 +6,6 @@ import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
 import React from 'react';
-import { handleCardClick } from '@/app/actions/telegram-actions';
 
 type AIServiceCardProps = {
   service: AIService;
@@ -116,15 +115,13 @@ const getTags = (service: AIService) => {
 
 export default function AIServiceCard({ service }: AIServiceCardProps) {
   const handleAnalytics = () => {
-    const data = {
-      serviceName: service.name,
-      serviceLink: service.link,
-    };
     if (navigator.sendBeacon) {
+      const data = {
+        serviceName: service.name,
+        serviceLink: service.link,
+      };
       const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
       navigator.sendBeacon('/api/track', blob);
-    } else {
-      handleCardClick(data).catch(console.error);
     }
   };
 
@@ -191,9 +188,14 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
             <span>{service.popularity}K</span>
           </div>
           <Button
-            asChild={false} // Ensure it's a button
+            asChild={false}
             size="sm"
             className="bg-primary/20 hover:bg-primary/40 border border-primary/50 text-white rounded-lg z-20 relative"
+            onClick={(e) => {
+              // This button is inside the `a` tag, so we don't need a separate click handler for navigation.
+              // The analytics handler is already on the parent `a` tag.
+              // We just let the default click behavior happen.
+            }}
           >
             <span>Попробовать</span>
           </Button>

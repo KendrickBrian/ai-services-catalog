@@ -3,7 +3,8 @@
 import type { ClickData } from './telegram-schemas';
 import { ClickDataSchema } from './telegram-schemas';
 
-async function sendMessageToTelegram(data: ClickData) {
+// This function will be called by the API route
+export async function handleCardClick(data: ClickData) {
   const validatedData = ClickDataSchema.safeParse(data);
 
   if (!validatedData.success) {
@@ -51,9 +52,4 @@ async function sendMessageToTelegram(data: ClickData) {
   } catch (error) {
     console.error('Error sending Telegram message:', error);
   }
-}
-
-
-export async function handleCardClick(data: ClickData) {
-  await sendMessageToTelegram(data);
 }

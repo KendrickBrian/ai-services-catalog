@@ -4,7 +4,6 @@ import { CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { AIService } from '@/data/ai-services';
 import React from 'react';
-import { handleCardClick } from '@/app/actions/telegram-actions';
 
 type PaymentServiceCardProps = {
   service: AIService;
@@ -14,15 +13,13 @@ export default function PaymentServiceCard({
   service,
 }: PaymentServiceCardProps) {
     const handleAnalytics = () => {
-    const data = {
-      serviceName: service.name,
-      serviceLink: service.link,
-    };
     if (navigator.sendBeacon) {
+      const data = {
+        serviceName: service.name,
+        serviceLink: service.link,
+      };
       const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
       navigator.sendBeacon('/api/track', blob);
-    } else {
-       handleCardClick(data).catch(console.error);
     }
   };
 
@@ -47,6 +44,11 @@ export default function PaymentServiceCard({
       <Button
         asChild={false} // Ensure it's a button
         className="bg-green-500 hover:bg-green-600 text-white font-bold shrink-0"
+        onClick={(e) => {
+           // This button is inside the `a` tag, so we don't need a separate click handler for navigation.
+           // The analytics handler is already on the parent `a` tag.
+           // We just let the default click behavior happen.
+        }}
       >
         <span>Получить</span>
       </Button>
