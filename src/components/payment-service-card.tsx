@@ -18,9 +18,7 @@ export default function PaymentServiceCard({
       serviceName: service.name,
       serviceLink: service.link,
     };
-    // Fire and forget the notification
     handleCardClick(data);
-    // Open the link immediately
     window.open(service.link, '_blank', 'noopener,noreferrer');
   };
 
