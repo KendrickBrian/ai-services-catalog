@@ -35,12 +35,12 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
   // Apply sorting
   services.sort((a, b) => {
     // Pinning logic for SYNTX
-    const pinCategories = ['all', 'Текст', 'Изображения', 'Видео'];
+    const pinCategories = ['Текст', 'Изображения', 'Видео', 'Аудио'];
     const shouldPin = page === 1 && !search && pinCategories.includes(category);
 
     if (shouldPin) {
-      if (a.id === 'syntx-ai-bot' && b.id !== 'syntx-ai-bot') return -1;
-      if (a.id !== 'syntx-ai-bot' && b.id === 'syntx-ai-bot') return 1;
+      if (a.id === 'syntx-ai-bot') return -1;
+      if (b.id === 'syntx-ai-bot') return 1;
     }
 
     // Default sorting logic
