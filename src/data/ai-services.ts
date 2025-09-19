@@ -36,7 +36,7 @@ export const allServices: AIService[] = [
     name: 'SYNTX AI Bot',
     category: 'Текст',
     description: 'Один Telegram-бот для доступа к ChatGPT, Midjourney, Claude и другим популярным нейросетям.',
-    link: 'https://t.me/syntxaibot?start=aff_179606810',
+    link: 'tg://resolve?domain=syntxaibot&start=aff_179606810',
     dateAdded: '2024-05-20',
     popularity: 150,
     rating: 5.0,
@@ -430,7 +430,7 @@ export const allServices: AIService[] = [
     name: 'Виртуальная карта для оплаты',
     category: 'Специальное',
     description: 'Твой бро в мире санкций. Помогает оплачивать Midjourney, ChatGPT Plus и другие забугорные сервисы из России. Просто и надежно.',
-    link: 'https://t.me/WantToPayBot?start=w17851188--KOIV0',
+    link: 'tg://resolve?domain=WantToPayBot&start=w17851188--KOIV0',
     dateAdded: '2024-01-01',
     popularity: 95, 
     rating: 5.0,
@@ -4889,3 +4889,4 @@ export const allServices: AIService[] = [
     tags: ['Есть триал']
   }
 ];
+

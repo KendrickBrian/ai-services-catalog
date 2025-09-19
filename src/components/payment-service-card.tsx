@@ -44,12 +44,7 @@ export default function PaymentServiceCard({
       // @ts-ignore
       const tg = window.Telegram?.WebApp;
       if (tg) {
-        // Use a specific method for Telegram links to open them natively
-        if (service.link.startsWith('https://t.me/')) {
-          tg.openTelegramLink(service.link);
-        } else {
-          tg.openLink(service.link);
-        }
+        tg.openLink(service.link);
       } else {
         // Fallback for non-Telegram environments
         window.open(service.link, '_blank', 'noopener,noreferrer');
