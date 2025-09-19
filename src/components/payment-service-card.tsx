@@ -13,18 +13,26 @@ type PaymentServiceCardProps = {
 export default function PaymentServiceCard({
   service,
 }: PaymentServiceCardProps) {
-    const triggerClick = () => {
+    const handleAnalytics = () => {
     const data = {
       serviceName: service.name,
       serviceLink: service.link,
     };
-    handleCardClick(data);
-    window.open(service.link, '_blank', 'noopener,noreferrer');
+    if (navigator.sendBeacon) {
+      const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+      navigator.sendBeacon('/api/track', blob);
+    } else {
+       handleCardClick(data).catch(console.error);
+    }
   };
 
+
   return (
-    <div
-      onClick={triggerClick}
+    <a
+      href={service.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={handleAnalytics}
       className="bg-card/50 backdrop-blur-lg border border-green-500/50 rounded-2xl p-4 flex items-center justify-between cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-green-500/20 no-underline text-current"
     >
       <div className="flex items-center gap-4">
@@ -37,10 +45,11 @@ export default function PaymentServiceCard({
         </div>
       </div>
       <Button
+        asChild={false} // Ensure it's a button
         className="bg-green-500 hover:bg-green-600 text-white font-bold shrink-0"
       >
         <span>Получить</span>
       </Button>
-    </div>
+    </a>
   );
 }

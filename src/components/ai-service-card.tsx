@@ -115,18 +115,25 @@ const getTags = (service: AIService) => {
 };
 
 export default function AIServiceCard({ service }: AIServiceCardProps) {
-  const triggerClick = () => {
+  const handleAnalytics = () => {
     const data = {
       serviceName: service.name,
       serviceLink: service.link,
     };
-    handleCardClick(data);
-    window.open(service.link, '_blank', 'noopener,noreferrer');
+    if (navigator.sendBeacon) {
+      const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+      navigator.sendBeacon('/api/track', blob);
+    } else {
+      handleCardClick(data).catch(console.error);
+    }
   };
 
   return (
-    <div
-      onClick={triggerClick}
+    <a
+      href={service.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={handleAnalytics}
       className={cn(
         'group relative w-full bg-card/50 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer no-underline text-current'
       )}
@@ -184,6 +191,7 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
             <span>{service.popularity}K</span>
           </div>
           <Button
+            asChild={false} // Ensure it's a button
             size="sm"
             className="bg-primary/20 hover:bg-primary/40 border border-primary/50 text-white rounded-lg z-20 relative"
           >
@@ -191,6 +199,6 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
           </Button>
         </div>
       </div>
-    </div>
+    </a>
   );
 }

@@ -22,11 +22,11 @@ async function sendMessageToTelegram(data: ClickData) {
   }
 
   const message = `
-    *Новый клик!*
+*Новый клик!*
 
-    Пользователь перешел к сервису:
-    *Название:* ${serviceName}
-    *Ссылка:* ${serviceLink}
+Пользователь перешел к сервису:
+*Название:* ${serviceName}
+*Ссылка:* ${serviceLink}
   `;
 
   const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
@@ -54,18 +54,30 @@ async function sendMessageToTelegram(data: ClickData) {
 }
 
 
-export async function handleCardClick(data: ClickData | FormData) {
-  if (data instanceof FormData) {
+export async function handleCardClick(data: ClickData | FormData | string) {
+  let clickData: ClickData | null = null;
+
+  if (typeof data === 'string') {
+    try {
+      clickData = JSON.parse(data) as ClickData;
+    } catch (error) {
+      console.error('Error parsing stringified JSON:', error);
+      return;
+    }
+  } else if (data instanceof FormData) {
     const jsonString = data.get('json') as string;
     if (jsonString) {
       try {
-        const parsedData = JSON.parse(jsonString);
-        await sendMessageToTelegram(parsedData);
+        clickData = JSON.parse(jsonString) as ClickData;
       } catch (error) {
         console.error('Error parsing FormData JSON:', error);
       }
     }
   } else {
-    await sendMessageToTelegram(data);
+    clickData = data;
+  }
+  
+  if (clickData) {
+    await sendMessageToTelegram(clickData);
   }
 }

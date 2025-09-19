@@ -1,0 +1,22 @@
+// src/app/api/track/route.ts
+import { NextResponse } from 'next/server';
+import { handleCardClick } from '@/app/actions/telegram-actions';
+import { ClickDataSchema } from '@/app/actions/telegram-schemas';
+
+export async function POST(request: Request) {
+  try {
+    const data = await request.json();
+    const validatedData = ClickDataSchema.safeParse(data);
+
+    if (validatedData.success) {
+      await handleCardClick(validatedData.data);
+      return NextResponse.json({ success: true }, { status: 200 });
+    } else {
+      console.error('Invalid data for tracking:', validatedData.error);
+      return NextResponse.json({ error: 'Invalid data' }, { status: 400 });
+    }
+  } catch (error) {
+    console.error('Error in tracking endpoint:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}
