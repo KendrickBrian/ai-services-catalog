@@ -12,9 +12,10 @@ type GetServicesParams = {
 
 export function getServices({ category, sort, search, page }: GetServicesParams) {
   const paymentService = allServices.find((s) => s.isWantToPay);
+  const syntxService = allServices.find((s) => s.id === 'syntx-ai-bot');
 
   let services = allServices.filter(
-    (service) => !service.isWantToPay
+    (service) => !service.isWantToPay && service.id !== 'syntx-ai-bot'
   );
 
   // Apply search filter first
@@ -35,23 +36,6 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
 
   // Apply sorting
   services.sort((a, b) => {
-    // Pinning logic for SYNTX
-    const pinCategories = ['all', 'Изображения', 'Видео', 'Аудио', 'Текст'];
-    const shouldPinA =
-      a.id === 'syntx-ai-bot' &&
-      page === 1 &&
-      !search &&
-      pinCategories.includes(category);
-    const shouldPinB =
-      b.id === 'syntx-ai-bot' &&
-      page === 1 &&
-      !search &&
-      pinCategories.includes(category);
-
-    if (shouldPinA && !shouldPinB) return -1;
-    if (!shouldPinA && shouldPinB) return 1;
-
-    // Default sorting logic
     if (sort === 'popular') {
       return (b.popularity || 0) - (a.popularity || 0);
     }
@@ -63,6 +47,12 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
     if (isNaN(dateB)) return -1;
     return dateB - dateA;
   });
+
+  // Pin SYNTX to the top for specific categories on the first page without search
+  const pinCategories = ['all', 'Изображения', 'Видео', 'Аудио', 'Текст'];
+  if (syntxService && page === 1 && !search && pinCategories.includes(category)) {
+      services.unshift(syntxService);
+  }
   
   // Paginate the final list
   const totalPages = Math.ceil(services.length / ITEMS_PER_PAGE);
