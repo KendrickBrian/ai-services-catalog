@@ -115,28 +115,20 @@ const getTags = (service: AIService) => {
 };
 
 export default function AIServiceCard({ service }: AIServiceCardProps) {
-  const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-
+  const triggerClick = () => {
     const data = {
       serviceName: service.name,
       serviceLink: service.link,
     };
-    
-    // Fire and forget
+    // Fire and forget the notification
     handleCardClick(data);
-
+    // Open the link immediately
     window.open(service.link, '_blank', 'noopener,noreferrer');
   };
-  
-  const onCardClick = () => {
-     window.open(service.link, '_blank', 'noopener,noreferrer');
-  }
 
   return (
     <div
-      onClick={onCardClick}
+      onClick={triggerClick}
       className={cn(
         'group relative w-full bg-card/50 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer no-underline text-current'
       )}
@@ -194,7 +186,6 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
             <span>{service.popularity}K</span>
           </div>
           <Button
-            onClick={onButtonClick}
             size="sm"
             className="bg-primary/20 hover:bg-primary/40 border border-primary/50 text-white rounded-lg z-20 relative"
           >

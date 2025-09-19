@@ -13,27 +13,20 @@ type PaymentServiceCardProps = {
 export default function PaymentServiceCard({
   service,
 }: PaymentServiceCardProps) {
-    const onButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
+    const triggerClick = () => {
     const data = {
       serviceName: service.name,
       serviceLink: service.link,
     };
-
+    // Fire and forget the notification
     handleCardClick(data);
-    
+    // Open the link immediately
     window.open(service.link, '_blank', 'noopener,noreferrer');
   };
-  
-  const onCardClick = () => {
-    window.open(service.link, '_blank', 'noopener,noreferrer');
-  }
 
   return (
     <div
-      onClick={onCardClick}
+      onClick={triggerClick}
       className="bg-card/50 backdrop-blur-lg border border-green-500/50 rounded-2xl p-4 flex items-center justify-between cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-green-500/20 no-underline text-current"
     >
       <div className="flex items-center gap-4">
@@ -46,7 +39,6 @@ export default function PaymentServiceCard({
         </div>
       </div>
       <Button
-        onClick={onButtonClick}
         className="bg-green-500 hover:bg-green-600 text-white font-bold shrink-0"
       >
         <span>Получить</span>
