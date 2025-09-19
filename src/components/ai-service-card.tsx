@@ -118,7 +118,10 @@ const getTags = (service: AIService) => {
 export default function AIServiceCard({ service }: AIServiceCardProps) {
   const user = useTelegramUser();
 
-  const handleAnalytics = () => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    // 1. Track the click
     try {
       if (navigator.sendBeacon) {
         let clickData: ClickData = {
@@ -142,14 +145,28 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
     } catch (error) {
        console.error('Error in handleAnalytics:', error);
     }
+
+    // 2. Open the link using Telegram's method
+    try {
+      // @ts-ignore
+      const tg = window.Telegram?.WebApp;
+      if (tg) {
+        tg.openLink(service.link);
+      } else {
+        // Fallback for non-Telegram environments
+        window.open(service.link, '_blank', 'noopener,noreferrer');
+      }
+    } catch(error) {
+        console.error('Error opening link:', error);
+        // Fallback for any other error
+        window.open(service.link, '_blank', 'noopener,noreferrer');
+    }
   };
 
   return (
     <a
       href={service.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={handleAnalytics}
+      onClick={handleClick}
       className={cn(
         'group relative w-full bg-card/50 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 cursor-pointer no-underline text-current'
       )}
@@ -210,11 +227,6 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
             asChild={false}
             size="sm"
             className="bg-primary/20 hover:bg-primary/40 border border-primary/50 text-white rounded-lg z-20 relative"
-            onClick={(e) => {
-              // This button is inside the `a` tag, so we don't need a separate click handler for navigation.
-              // The analytics handler is already on the parent `a` tag.
-              // We just let the default click behavior happen.
-            }}
           >
             <span>Попробовать</span>
           </Button>

@@ -16,7 +16,10 @@ export default function PaymentServiceCard({
 }: PaymentServiceCardProps) {
   const user = useTelegramUser();
 
-  const handleAnalytics = () => {
+ const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+
+    // 1. Track the click
     try {
       if (navigator.sendBeacon) {
         let clickData: ClickData = {
@@ -40,15 +43,29 @@ export default function PaymentServiceCard({
     } catch (error) {
        console.error('Error in handleAnalytics:', error);
     }
+    
+    // 2. Open the link using Telegram's method
+     try {
+      // @ts-ignore
+      const tg = window.Telegram?.WebApp;
+      if (tg) {
+        tg.openLink(service.link);
+      } else {
+        // Fallback for non-Telegram environments
+        window.open(service.link, '_blank', 'noopener,noreferrer');
+      }
+    } catch(error) {
+        console.error('Error opening link:', error);
+        // Fallback for any other error
+        window.open(service.link, '_blank', 'noopener,noreferrer');
+    }
   };
 
 
   return (
     <a
       href={service.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={handleAnalytics}
+      onClick={handleClick}
       className="bg-card/50 backdrop-blur-lg border border-green-500/50 rounded-2xl p-4 flex items-center justify-between cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl hover:shadow-green-500/20 no-underline text-current"
     >
       <div className="flex items-center gap-4">
@@ -61,13 +78,8 @@ export default function PaymentServiceCard({
         </div>
       </div>
       <Button
-        asChild={false} // Ensure it's a button
+        asChild={false}
         className="bg-green-500 hover:bg-green-600 text-white font-bold shrink-0"
-        onClick={(e) => {
-           // This button is inside the `a` tag, so we don't need a separate click handler for navigation.
-           // The analytics handler is already on the parent `a` tag.
-           // We just let the default click behavior happen.
-        }}
       >
         <span>Получить</span>
       </Button>
