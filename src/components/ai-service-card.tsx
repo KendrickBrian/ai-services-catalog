@@ -115,9 +115,9 @@ const getTags = (service: AIService) => {
 };
 
 export default function AIServiceCard({ service }: AIServiceCardProps) {
-  const onCardClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const onCardClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    await handleCardClick({
+    handleCardClick({
       serviceName: service.name,
       serviceLink: service.link,
     });

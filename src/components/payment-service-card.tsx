@@ -13,9 +13,9 @@ type PaymentServiceCardProps = {
 export default function PaymentServiceCard({
   service,
 }: PaymentServiceCardProps) {
-  const onCardClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const onCardClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    await handleCardClick({
+    handleCardClick({
       serviceName: service.name,
       serviceLink: service.link,
     });
