@@ -13,23 +13,30 @@ type PaymentServiceCardProps = {
 export default function PaymentServiceCard({
   service,
 }: PaymentServiceCardProps) {
-    const onCardClick = () => {
+    const onCardClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // We prevent default to handle the click ourselves,
+    // ensuring the beacon is sent before navigating.
+    e.preventDefault();
+    
+    const data = {
+      serviceName: service.name,
+      serviceLink: service.link,
+    };
+
     if (typeof navigator.sendBeacon === 'function') {
-      const data = {
-        serviceName: service.name,
-        serviceLink: service.link,
-      };
       const formData = new FormData();
       formData.append('json', JSON.stringify(data));
-      // Use URL relative to the origin
+      // Use URL relative to the origin. This is crucial for sendBeacon.
       const actionUrl = new URL(handleCardClick.name, window.location.origin).pathname;
       navigator.sendBeacon(actionUrl, formData);
     } else {
-       handleCardClick({
-        serviceName: service.name,
-        serviceLink: service.link,
-      });
+       // Fallback for older browsers
+       handleCardClick(data);
     }
+
+    // Manually navigate after sending the beacon.
+    // window.open is used to respect the target="_blank" behavior.
+    window.open(service.link, '_blank', 'noopener,noreferrer');
   };
 
   return (
