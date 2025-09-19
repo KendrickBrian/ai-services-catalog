@@ -17,19 +17,19 @@ export function getServices({ category, sort, search, page }: GetServicesParams)
     (service) => !service.isWantToPay
   );
 
-  // Apply category filter
-  if (category !== 'all') {
-    services = services.filter((service) => 
-      service.category === category || service.secondaryCategory === category
-    );
-  }
-
-  // Apply search filter
+  // Apply search filter first
   if (search) {
     const lowercasedSearch = search.toLowerCase();
     services = services.filter((service) =>
       service.name.toLowerCase().includes(lowercasedSearch) ||
       service.description.toLowerCase().includes(lowercasedSearch)
+    );
+  }
+
+  // Apply category filter
+  if (category !== 'all') {
+    services = services.filter((service) => 
+      service.category === category || service.secondaryCategory === category
     );
   }
 
