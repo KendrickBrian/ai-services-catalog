@@ -16,39 +16,48 @@ export default function PaymentServiceCard({
 }: PaymentServiceCardProps) {
   const user = useTelegramUser();
 
+ const trackClick = async () => {
+    try {
+      let clickData: ClickData = {
+        serviceName: service.name,
+        serviceLink: service.link,
+      };
+
+      if (user) {
+        clickData = {
+          ...clickData,
+          userId: user.id,
+          username: user.username,
+          firstName: user.firstName,
+          lastName: user.lastName,
+        };
+      }
+      
+      await fetch('/api/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(clickData),
+        keepalive: true, // Important for requests that might outlive the page
+      });
+
+    } catch (error) {
+       console.error('Error in trackClick:', error);
+    }
+  };
+
  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
     // 1. Track the click
-    try {
-      if (navigator.sendBeacon) {
-        let clickData: ClickData = {
-          serviceName: service.name,
-          serviceLink: service.link,
-        };
-
-        if (user) {
-           clickData = {
-            ...clickData,
-            userId: user.id,
-            username: user.username,
-            firstName: user.firstName,
-            lastName: user.lastName,
-          };
-        }
-
-        const blob = new Blob([JSON.stringify(clickData)], { type: 'application/json' });
-        navigator.sendBeacon('/api/track', blob);
-      }
-    } catch (error) {
-       console.error('Error in handleAnalytics:', error);
-    }
+    trackClick();
     
     // 2. Open the link using Telegram's method
      try {
       // @ts-ignore
       const tg = window.Telegram?.WebApp;
-      if (tg) {
+      if (tg && tg.openLink) {
         tg.openLink(service.link);
       } else {
         // Fallback for non-Telegram environments
