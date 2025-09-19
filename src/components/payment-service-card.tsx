@@ -16,7 +16,7 @@ export default function PaymentServiceCard({
 }: PaymentServiceCardProps) {
   const user = useTelegramUser();
 
- const trackClick = async () => {
+  const trackClick = async () => {
     try {
       let clickData: ClickData = {
         serviceName: service.name,
@@ -39,7 +39,7 @@ export default function PaymentServiceCard({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(clickData),
-        keepalive: true, // Important for requests that might outlive the page
+        keepalive: true,
       });
 
     } catch (error) {
@@ -47,24 +47,33 @@ export default function PaymentServiceCard({
     }
   };
 
- const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    // 1. Track the click
-    trackClick();
+    try {
+      // 1. Await the click tracking to ensure it completes
+      await trackClick();
+    } catch (error) {
+       // Log tracking error but still attempt to navigate
+      console.error('Error in trackClick, proceeding with navigation:', error);
+    }
     
     // 2. Open the link using Telegram's method
-     try {
+    try {
       // @ts-ignore
       const tg = window.Telegram?.WebApp;
-      if (tg && tg.openLink) {
-        tg.openLink(service.link);
+      if (tg) {
+        if (service.link.startsWith('https://t.me/')) {
+          tg.openTelegramLink(service.link);
+        } else {
+          tg.openLink(service.link);
+        }
       } else {
         // Fallback for non-Telegram environments
         window.open(service.link, '_blank', 'noopener,noreferrer');
       }
     } catch(error) {
-        console.error('Error opening link:', error);
+        console.error('Error opening link, falling back to window.open:', error);
         // Fallback for any other error
         window.open(service.link, '_blank', 'noopener,noreferrer');
     }
