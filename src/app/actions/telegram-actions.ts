@@ -3,11 +3,11 @@
 import type { ClickData } from './telegram-schemas';
 import { ClickDataSchema } from './telegram-schemas';
 
-export async function handleCardClick(data: ClickData) {
+async function sendMessageToTelegram(data: ClickData) {
   const validatedData = ClickDataSchema.safeParse(data);
 
   if (!validatedData.success) {
-    console.error('Invalid data for handleCardClick:', validatedData.error);
+    console.error('Invalid data for sendMessageToTelegram:', validatedData.error);
     return;
   }
 
@@ -50,5 +50,22 @@ export async function handleCardClick(data: ClickData) {
     }
   } catch (error) {
     console.error('Error sending Telegram message:', error);
+  }
+}
+
+
+export async function handleCardClick(data: ClickData | FormData) {
+  if (data instanceof FormData) {
+    const jsonString = data.get('json') as string;
+    if (jsonString) {
+      try {
+        const parsedData = JSON.parse(jsonString);
+        await sendMessageToTelegram(parsedData);
+      } catch (error) {
+        console.error('Error parsing FormData JSON:', error);
+      }
+    }
+  } else {
+    await sendMessageToTelegram(data);
   }
 }

@@ -13,13 +13,23 @@ type PaymentServiceCardProps = {
 export default function PaymentServiceCard({
   service,
 }: PaymentServiceCardProps) {
-  const onCardClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    handleCardClick({
-      serviceName: service.name,
-      serviceLink: service.link,
-    });
-    window.open(service.link, '_blank', 'noopener,noreferrer');
+    const onCardClick = () => {
+    if (typeof navigator.sendBeacon === 'function') {
+      const data = {
+        serviceName: service.name,
+        serviceLink: service.link,
+      };
+      const formData = new FormData();
+      formData.append('json', JSON.stringify(data));
+      // Use URL relative to the origin
+      const actionUrl = new URL(handleCardClick.name, window.location.origin).pathname;
+      navigator.sendBeacon(actionUrl, formData);
+    } else {
+       handleCardClick({
+        serviceName: service.name,
+        serviceLink: service.link,
+      });
+    }
   };
 
   return (
