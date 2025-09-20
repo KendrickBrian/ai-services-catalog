@@ -3251,7 +3251,7 @@ export const allServices: AIService[] = [
     id: 'bizagi',
     name: 'Bizagi',
     category: 'Код',
-    description: 'Low-code платформа, которая позволяет бизнесу автоматизировать свои процессы без привлечения армии разработчиков.',
+    description: 'Low-code платформа, которая помогает бизнесу автоматизировать свои процессы без привлечения армии разработчиков.',
     link: 'https://www.bizagi.com',
     dateAdded: '2025-09-06',
     popularity: 300,
@@ -4889,6 +4889,7 @@ export const allServices: AIService[] = [
     tags: ['Есть триал']
   }
 ];
+
 
 
 
