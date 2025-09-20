@@ -115,43 +115,42 @@ const getTags = (service: AIService) => {
 };
 
 export default function AIServiceCard({ service }: AIServiceCardProps) {
-  const trackClick = (clickData: ClickData) => {
+  const trackClick = async (clickData: ClickData) => {
     try {
-      const params = new URLSearchParams({
-        serviceName: clickData.serviceName,
-        serviceLink: clickData.serviceLink,
-        // Add a random cache-busting parameter
-        _: new Date().getTime().toString(),
+      await fetch('/api/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(clickData),
       });
-      const pixel = new Image();
-      pixel.src = `/api/track?${params.toString()}`;
     } catch (error) {
        console.error('Error in trackClick:', error);
     }
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    // 1. Fire the tracking pixel. Do not wait for it.
-    trackClick({
+    // 1. Обязательно дожидаемся отправки данных для отслеживания
+    await trackClick({
       serviceName: service.name,
       serviceLink: service.link,
     });
     
-    // 2. Open link using the appropriate method.
+    // 2. Только после этого открываем ссылку
     try {
       // @ts-ignore
       const tg = window.Telegram?.WebApp;
       if (tg) {
         tg.openLink(service.link);
       } else {
-        // Fallback for non-Telegram environments
+        // Fallback для не-Telegram окружения
         window.open(service.link, '_blank', 'noopener,noreferrer');
       }
     } catch (error) {
       console.error('Error opening link, falling back to window.open:', error);
-      // Fallback for any other error
+      // Fallback на случай любой другой ошибки
       window.open(service.link, '_blank', 'noopener,noreferrer');
     }
   };

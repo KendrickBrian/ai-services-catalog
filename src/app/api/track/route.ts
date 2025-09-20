@@ -3,13 +3,9 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { handleCardClick } from '@/app/actions/telegram-actions';
 import { ClickDataSchema } from '@/app/actions/telegram-schemas';
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
-    const data = {
-      serviceName: searchParams.get('serviceName'),
-      serviceLink: searchParams.get('serviceLink'),
-    };
+    const data = await request.json();
     
     const validatedData = ClickDataSchema.safeParse(data);
 
@@ -17,21 +13,8 @@ export async function GET(request: NextRequest) {
       // Дожидаемся отправки уведомления в Telegram
       await handleCardClick(validatedData.data);
       
-      // Возвращаем 1x1 прозрачный GIF
-      const imageBuffer = Buffer.from(
-        'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
-        'base64'
-      );
-      
-      return new NextResponse(imageBuffer, {
-        status: 200,
-        headers: {
-          'Content-Type': 'image/gif',
-          'Cache-Control': 'no-cache, no-store, must-revalidate',
-          'Pragma': 'no-cache',
-          'Expires': '0',
-        },
-      });
+      // Возвращаем успешный ответ
+      return NextResponse.json({ success: true }, { status: 200 });
 
     } else {
       console.error('Invalid data for tracking:', validatedData.error);
