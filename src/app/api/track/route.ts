@@ -14,8 +14,8 @@ export async function GET(request: NextRequest) {
     const validatedData = ClickDataSchema.safeParse(data);
 
     if (validatedData.success) {
-      // Не ждем ответа, чтобы не блокировать запрос пикселя
-      handleCardClick(validatedData.data);
+      // Дожидаемся отправки уведомления в Telegram
+      await handleCardClick(validatedData.data);
       
       // Возвращаем 1x1 прозрачный GIF
       const imageBuffer = Buffer.from(
@@ -28,6 +28,8 @@ export async function GET(request: NextRequest) {
         headers: {
           'Content-Type': 'image/gif',
           'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
         },
       });
 
