@@ -13,42 +13,33 @@ type PaymentServiceCardProps = {
 export default function PaymentServiceCard({
   service,
 }: PaymentServiceCardProps) {
-  const trackClick = async (clickData: ClickData) => {
+  const trackClick = (clickData: ClickData) => {
      try {
-       await fetch('/api/track', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(clickData),
-      });
+       const data = JSON.stringify(clickData);
+       navigator.sendBeacon('/api/track', data);
     } catch (error) {
-       console.error('Error in trackClick:', error);
+       console.error('Error in trackClick with sendBeacon:', error);
     }
   };
 
-  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    // 1. Обязательно дожидаемся отправки данных для отслеживания
-    await trackClick({
+    trackClick({
       serviceName: service.name,
       serviceLink: service.link,
     });
 
-    // 2. Только после этого открываем ссылку
     try {
       // @ts-ignore
       const tg = window.Telegram?.WebApp;
       if (tg) {
         tg.openLink(service.link);
       } else {
-        // Fallback для не-Telegram окружения
         window.open(service.link, '_blank', 'noopener,noreferrer');
       }
     } catch (error) {
       console.error('Error opening link, falling back to window.open:', error);
-      // Fallback на случай любой другой ошибки
       window.open(service.link, '_blank', 'noopener,noreferrer');
     }
   };
