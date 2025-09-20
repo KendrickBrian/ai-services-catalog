@@ -115,39 +115,31 @@ const getTags = (service: AIService) => {
 };
 
 export default function AIServiceCard({ service }: AIServiceCardProps) {
-  const trackClick = async (clickData: ClickData) => {
+  const trackClick = (clickData: ClickData) => {
     try {
-      // Use a timeout to avoid waiting forever
-      const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Request timed out')), 300)
-      );
-
-      await Promise.race([
-        fetch('/api/track', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(clickData),
-        }),
-        timeoutPromise,
-      ]);
+      const params = new URLSearchParams({
+        serviceName: clickData.serviceName,
+        serviceLink: clickData.serviceLink,
+        // Add a random cache-busting parameter
+        _: new Date().getTime().toString(),
+      });
+      const pixel = new Image();
+      pixel.src = `/api/track?${params.toString()}`;
     } catch (error) {
-      // We can ignore timeout errors as the request was likely sent.
-      if ((error as Error).message !== 'Request timed out') {
-        console.error('Error in trackClick:', error);
-      }
+       console.error('Error in trackClick:', error);
     }
   };
 
-  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    // 1. Wait for tracking to complete (or time out)
-    await trackClick({
+    // 1. Fire the tracking pixel. Do not wait for it.
+    trackClick({
       serviceName: service.name,
       serviceLink: service.link,
     });
     
-    // 2. Open link using the appropriate method
+    // 2. Open link using the appropriate method.
     try {
       // @ts-ignore
       const tg = window.Telegram?.WebApp;
