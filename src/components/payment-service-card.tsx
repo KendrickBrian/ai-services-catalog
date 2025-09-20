@@ -13,24 +13,34 @@ type PaymentServiceCardProps = {
 export default function PaymentServiceCard({
   service,
 }: PaymentServiceCardProps) {
-  const trackClick = (clickData: ClickData) => {
+  const trackClick = async (clickData: ClickData) => {
     try {
-      fetch('/api/track', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(clickData),
-        keepalive: true,
-      });
+      // Use a timeout to avoid waiting forever
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Request timed out')), 300)
+      );
+
+      await Promise.race([
+        fetch('/api/track', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(clickData),
+        }),
+        timeoutPromise,
+      ]);
     } catch (error) {
-      console.error('Error in trackClick:', error);
+      // We can ignore timeout errors as the request was likely sent.
+      if ((error as Error).message !== 'Request timed out') {
+        console.error('Error in trackClick:', error);
+      }
     }
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    // 1. Fire and forget tracking
-    trackClick({
+    // 1. Wait for tracking to complete (or time out)
+    await trackClick({
       serviceName: service.name,
       serviceLink: service.link,
     });
