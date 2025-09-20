@@ -115,23 +115,28 @@ const getTags = (service: AIService) => {
 };
 
 export default function AIServiceCard({ service }: AIServiceCardProps) {
-  const trackClick = (clickData: ClickData) => {
+  const trackClick = async (clickData: ClickData) => {
     try {
-      const data = JSON.stringify(clickData);
-      navigator.sendBeacon('/api/track', data);
+      await fetch('/api/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(clickData),
+      });
     } catch (error) {
-       console.error('Error in trackClick with sendBeacon:', error);
+      console.error('Error in trackClick:', error);
     }
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    trackClick({
+    await trackClick({
       serviceName: service.name,
       serviceLink: service.link,
     });
-    
+
     try {
       // @ts-ignore
       const tg = window.Telegram?.WebApp;

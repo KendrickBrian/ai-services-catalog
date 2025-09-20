@@ -13,19 +13,24 @@ type PaymentServiceCardProps = {
 export default function PaymentServiceCard({
   service,
 }: PaymentServiceCardProps) {
-  const trackClick = (clickData: ClickData) => {
-     try {
-       const data = JSON.stringify(clickData);
-       navigator.sendBeacon('/api/track', data);
+  const trackClick = async (clickData: ClickData) => {
+    try {
+      await fetch('/api/track', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(clickData),
+      });
     } catch (error) {
-       console.error('Error in trackClick with sendBeacon:', error);
+      console.error('Error in trackClick:', error);
     }
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    trackClick({
+    await trackClick({
       serviceName: service.name,
       serviceLink: service.link,
     });
