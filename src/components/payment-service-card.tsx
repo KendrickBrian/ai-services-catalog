@@ -17,30 +17,27 @@ export default function PaymentServiceCard({
 }: PaymentServiceCardProps) {
   const { isMobile } = usePlatform();
 
-  const trackClick = async () => {
+  const trackClick = (clickData: ClickData) => {
     try {
-      const clickData: ClickData = {
-        serviceName: service.name,
-        serviceLink: service.link,
-      };
-
-      await fetch('/api/track', {
+      fetch('/api/track', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(clickData),
+        keepalive: true,
       });
     } catch (error) {
       console.error('Error in trackClick:', error);
     }
   };
 
-  const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    // 1. Await tracking to complete to guarantee it's sent
-    await trackClick();
+    // 1. Fire and forget tracking
+    trackClick({
+      serviceName: service.name,
+      serviceLink: service.link,
+    });
 
     // 2. Open link using the appropriate method
     try {
