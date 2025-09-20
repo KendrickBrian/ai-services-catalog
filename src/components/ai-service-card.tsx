@@ -7,6 +7,7 @@ import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
 import React from 'react';
 import type { ClickData } from '@/app/actions/telegram-schemas';
+import { usePlatform } from '@/hooks/use-platform';
 
 type AIServiceCardProps = {
   service: AIService;
@@ -115,6 +116,8 @@ const getTags = (service: AIService) => {
 };
 
 export default function AIServiceCard({ service }: AIServiceCardProps) {
+  const { isMobile } = usePlatform();
+
   const trackClick = async () => {
     try {
       const clickData: ClickData = {
@@ -137,7 +140,7 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    // 1. Await tracking to complete
+    // 1. Await tracking to complete to guarantee it's sent
     await trackClick();
 
     // 2. Open link using the appropriate method
@@ -146,7 +149,6 @@ export default function AIServiceCard({ service }: AIServiceCardProps) {
       const tg = window.Telegram?.WebApp;
       if (tg) {
         const isTelegramUrl = service.link.includes('t.me') || service.link.includes('telegram.me');
-        const isMobile = tg.platform === 'ios' || tg.platform === 'android';
 
         if (isTelegramUrl && isMobile) {
           tg.openTelegramLink(service.link);

@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import type { AIService } from '@/data/ai-services';
 import React from 'react';
 import type { ClickData } from '@/app/actions/telegram-schemas';
+import { usePlatform } from '@/hooks/use-platform';
+
 
 type PaymentServiceCardProps = {
   service: AIService;
@@ -13,6 +15,8 @@ type PaymentServiceCardProps = {
 export default function PaymentServiceCard({
   service,
 }: PaymentServiceCardProps) {
+  const { isMobile } = usePlatform();
+
   const trackClick = async () => {
     try {
       const clickData: ClickData = {
@@ -35,7 +39,7 @@ export default function PaymentServiceCard({
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
 
-    // 1. Await tracking to complete
+    // 1. Await tracking to complete to guarantee it's sent
     await trackClick();
 
     // 2. Open link using the appropriate method
@@ -44,7 +48,6 @@ export default function PaymentServiceCard({
       const tg = window.Telegram?.WebApp;
       if (tg) {
         const isTelegramUrl = service.link.includes('t.me') || service.link.includes('telegram.me');
-        const isMobile = tg.platform === 'ios' || tg.platform === 'android';
 
         if (isTelegramUrl && isMobile) {
           tg.openTelegramLink(service.link);
