@@ -54,6 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
+      suppressHydrationWarning
       className={cn(
         'dark',
         fontInter.variable,
